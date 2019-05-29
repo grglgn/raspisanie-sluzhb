@@ -1,0 +1,38 @@
+#shed_table, #shed_table td{
+ border:solid black 1px;
+ border-collapse: collapse;
+ }
+ #settTable, #settTable td{
+ border:solid black 1px;
+ border-collapse: collapse;
+ }
+ #settTable{
+ margin-top:20px;
+ }
+ #settTable td{
+ width:80px;
+ height:80px;
+ text-align:center;
+ }
+
+ #settTable td.header{
+ background-color:rgb(220,220,220);
+ }
+
+ .outOfRange{
+   background-color:grey;
+ }
+ .prazdn{
+    color:red;
+ }
+ #htmlTA, #txtTA, #originTA{width:900px; height:300px;}
+ #txtTA{margin-left:100px;}
+ #descrTA{width:900px; height:300px;}
+ body, #settingsPane {text-align:center;}
+
+ #fromDateSett{width:40px; font-size:16px; margin-left:15px;}
+ #toDateSett {width:40px; font-size:16px;}
+ #settMonth, #settYear  {font-size:18px; margin-left:15px;}
+ div#settingsPane, #settingsPane button {
+   font-size:18px;
+ }

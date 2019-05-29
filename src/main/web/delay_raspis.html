@@ -1,0 +1,303 @@
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery-3.4.1.js"></script>
+<script src="raspis_api.js"></script>
+<script>
+//============= Настройка дат ===============
+	var data_nachala = 1;//от 1 до 31
+	var den_nedeli_dati_nachala = 2; // 1-понедельник...7-воскресенье
+	var data_kontsa = 31; // от 1 до 31
+	var mesyats = 'января'; // в родительном падеже
+	var nomer_mesyatsa = 1; // 1 - январь и т.д.
+	var god = 2019;
+//===========================================
+
+
+var cfg = {
+    AKF:['Акафист Архангелу Божию Михаилу', 'Акафист преподобной Марии Египетской'],
+	firstAkaf:0,
+    WD:['', 'Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
+	startDay: data_nachala,
+	startWeekDay: den_nedeli_dati_nachala,
+	endDay: data_kontsa,
+	month: mesyats,
+	monthNum: nomer_mesyatsa,
+	year: god,
+	calendarUrl:'http://script.days.ru/calendar.php?advanced=1&date=$dt',
+	weekTmpl:[3,false,['','']],
+	special:{//формат { day1:[isPrazdn, descr, [[timе11,slu11],[time12,slu12]...]], day2:...}
+	
+	    1:[false,'',[['17-00', 'Всенощное бдение']]],
+		2:[false,'Предпразднство Рождества Христова. Сщмч. Игнатия Богоносца. Св.прав. Иоанна Кронштадтского',[['8-30', 'Часы. Исповедь. Литургия.']]],
+		4:[false,'Предпразднство Рождества Христова. Вмц. Анастасии Узорешительницы.',
+		[['8-30', 'Царские Часы. Изобразительны.'],
+		 ['17-00','Вечерня. Утреня.']]],
+	
+		5:[false,'Суббота перед Рождеством. Десяти мучеников, иже в Крите '],
+		6:[true,'Неделя 32-я по Пятидесятнице, перед Рождеством, святых отец. Глас 7-й. Навечерие Рождества Христова (Рождественский сочельник)',[
+		['8-30', 'Часы. Исповедь. Литургия. Вечерня'],['17-00','Великое повечерие. Утреня.', true],['23-30','Исповедь. Часы.']]],
+		7:[true,'РОЖДЕСТВО ХРИСТОВО',[['00-00', 'Литургия']]],
+		9:[false,'Ап. от 70-ти первомч. и архидиа́кона Стефа́на (34) '],
+		11:[false,'Мучеников 14 000 младенцев, от Ирода в Вифлееме избиенных (I)'],
+		13:[true,'Неделя 33-я по Пятидесятнице. Глас 8-й. Отдание праздника Рождества Христова. Правв. Ио́сифа Обручника, Дави́да царя и Иа́кова, брата Господня по плоти; прп. Мела́нии Римляныни (439).',[['8-30', 'Часы. Исповедь. Литургия.'], ['17-00','Всенощное бдение',true]]],
+		14:[true, 'Обрезание Господне. Свт. Василия Великого.', [['8-30', 'Часы. Исповедь. Литургия.']]],
+		15:[false, 'Прп. Серафима Саровского', [['8-30', 'Утреня. Часы. Исповедь. Литургия.']]],
+		16:[false,null],
+		18:[false, 'Предпразднство Богоявления (Крещенский сочельник). День постный', 
+		   [['7-00', 'Царские часы. Изобразительны. Вечерня. Литургия свт. Василия Великого. Великое освящение воды'], ['17-00', 'Всенощное бдение', true]]],
+		19:[true,'Святое Богоявление. Крещение Господа Бога и Спаса нашего Иисуса Христа', [['8-30', 'Часы. Исповедь. Литургия. Великое освящение воды.'],
+		['17-00','Всенощное бдение', true]]],
+		20:[true,'Неделя 34-я по Пятидесятнице, по Богоявлении. Глас 1-й. Собор Пророка, Предтечи и Крестителя Господня Иоанна'],
+		23:[false,'Свт. Григо́рия Нисского, епископа (после 394); прп. Дометиа́на, епископа Мелитинского (601); свт. Феофа́на, Затворника Вышенского (1894)'],
+		25:[false,'Мц. Татиа́ны Римской, диаконисы, и с нею в Риме пострадавших (226–235); свт. Са́ввы I, архиепископа Сербского (1237)'],
+		26:[false,'Мчч. Ермила, диакона и Стратони́ка (ок. 315); прп. Ирина́рха, затворника Ростовского'],
+		27:[true,'Неделя 35-я по Пятидесятнице. Глас 2-й. Отдание Богоявления.  Преподобных отец, в Синае и Раифе избиенных: прмчч. Иса́ии, Са́ввы, Моисе́я и ученика его Моисе́я, Иереми́и, Павла, Ада́ма, Се́ргия, До́мна, Прокла, Ипа́тия, Исаа́ка, Макария, Марка, Вениами́на, Евсе́вия, Илии́ и иных с ними (IV–V); равноап. Нины, просветительницы Грузии (335)'],
+		30:[false,'Прп. Антония Великого (356)']
+		
+		
+	}
+};
+
+var Akafist={
+    cur:cfg.firstAkaf,
+	next:function(){
+	    var res = Akafist.cur++;
+	    if (Akafist.cur > (cfg.AKF.length-1)) Akafist.cur = 0;
+        return cfg.AKF[Akafist.cur];		
+	}
+};
+
+
+
+
+Shedule.prototype.init = function(){
+    
+	var wd = cfg.startWeekDay;
+    for (var d = cfg.startDay; d <= cfg.endDay; d++){
+	    var day = new ShedDay(d,wd,cfg.month, cfg.year,	wd==7,null,'');
+		//add slu
+		var f_sluAdded = false;
+		if (cfg.special[d]){
+		    var specCfg = cfg.special[d]; 
+		    day.data.isPrazdn = specCfg[0];
+			if (specCfg[1] == null) {//если описание null, то не читем службы из конфигов, оставляем добавленные шаблоном
+			    f_sluAdded = true;
+				day.data.description='<loaded>';
+			} else {
+			   day.data.description = specCfg[1];
+			   var slArr = specCfg[2];
+			   if (slArr){ 
+			      for (var i = 0; i < slArr.length; i++){
+				      var isPra = slArr[i].length > 2 ? slArr[i][2] : false;
+				      day.addSlu(slArr[i][0], slArr[i][1], isPra);
+			      }
+				  f_sluAdded = true;
+			   }//if
+			   if (specCfg.length > 3) day.data.loadDescr(specCfg[3]);
+			}//else  
+					
+		} 
+		if (!f_sluAdded){
+			if (wd == 3){
+			    day.loadDescr();
+				day.addSlu('8-30', 'Утреня. Исповедь. Часы. Литургия.');
+			} else if (wd == 5){
+			    day.loadDescr();
+				day.addSlu('8-30', 'Утреня. Исповедь. Часы. Литургия.');
+				day.addSlu('17-00', 'Вечерня. Утреня. Беседа перед Крещением.');
+			} else if (wd == 6){
+			    day.loadDescr();
+				day.addSlu('8-30', 'Исповедь. Часы. Литургия. Панихида.');
+				day.addSlu('11-30', 'Крещение', false);
+				day.addSlu('17-00', 'Всенощное бдение', true);
+			} else if (wd == 7){
+			    day.loadDescr();
+				day.addSlu('8-30', 'Исповедь. Часы. Литургия. Молебен. Панихида.');
+				day.addSlu('13-00', 'Духовная беседа со священником.', false);
+				day.addSlu('17-00', Akafist.next(), false);
+				
+			}
+		}//!f_sluAdded
+		this.days[this.days.length] = day;
+		wd++;
+		if (wd > 7) wd = 1;
+	
+	}
+};
+
+Shedule.prototype.generate = function(){
+  var b = '<tbody>\n';
+  var bt= '';
+  for (var i = 0; i < this.days.length; i++){
+      b += shed_day_to_html(this.days[i], cfg.WD);
+	  bt += this.dayToText(this.days[i]);
+  }
+  b += '</tbody>\n';
+  el('shed_table').innerHTML = b;
+  el('htmlTA').innerText = b;
+  el('txtTA').innerText=bt;
+  return b;
+};
+
+
+
+ShedDay.prototype.calendarScript = function(){
+   /*var url = cfg.calendarUrl.replace('$dt',cfg.year+'-'+cfg.monthNum+'-'+this.data.day);
+   */
+   
+   var url = cfg.calendarUrl.replace('$dt', fmtDateForCalendar(this.data.day,cfg.monthNum));
+   return '<script language="javascript" src="'+url+'"></scr'+'ipt><script>print_holiday()</scr'+'ipt>';
+   
+};
+
+function fmtDateForCalendar(day,mon){
+   var mStr = ''+mon;
+   if (mStr.length < 2) mStr = '0'+mStr;
+   var dStr = ''+ day;
+   if (dStr.length < 2) dStr = '0'+dStr;
+   return mStr+dStr;
+}
+
+Shedule.prototype.dayToText = function(dayObj){
+  var ddata = dayObj.data
+  var sluNum = ddata.slu.length;
+  if (sluNum == 0) return '';
+  var sl = ddata.slu[0];
+  var b =  '\n-----------------------------\n'+
+  cfg.WD[ddata.weekDay] + ', ' + ddata.day+' '+ ddata.month+'\n';
+  b+='-----------------------------\n';
+  for (var i = 0; i < sluNum; i++){
+      sl = ddata.slu[i];
+	  b+= sl.time+' '+sl.title+'\n';
+  }
+  return b;
+};
+
+Shedule.prototype.initSettings = function(){
+this.initSettingsDates();
+this.initSettingsTable(); 
+
+}
+
+Shedule.prototype.initSettingsDates = function(){
+el('fromDateSett').value = cfg.startDay;
+el('toDateSett').value = cfg.endDay;
+el('settMonth').innerText = cfg.month;
+el('settYear').innerText = cfg.year;
+}
+
+function pint(s){
+    var i = parseInt(s);
+	if (isNaN(i)){
+	    var msg = "Неправильное число:"+s;
+	    alert(msg);
+		throw msg;
+	} 
+	return i;
+}
+
+Shedule.prototype.loadSettingsDates = function(){
+    cfg.startDay=pint(el('fromDateSett').value);
+    cfg.endDay = pint(el('toDateSett').value);
+    cfg.month = el('settMonth').innerText;
+    cfg.year = pint(el('settYear').innerText);
+}
+
+
+
+
+Shedule.prototype.initSettingsTable = function(){
+   var b = '<tbody>\n';
+   var ar = cfg.WD;
+   var startD=cfg.startDay;
+   var endD=cfg.endDay;
+   var startWD=cfg.startWeekDay;
+   b += '<tr>';
+   for (var i = 1; i < ar.length;i++){
+       b+='<td class="header">'+ar[i]+'</td>';
+   }
+   b+='</tr>';
+   var wd=startWD;
+   for (var i = startD; i <= endD;i++){
+       
+	   if (i==startD){
+	       b+='<tr>';
+           for (var k=1;k<wd;k++){
+	           b+='<td class="outOfRange">&nbsp;</td>';
+	       }
+	   }else if (wd==1) b+='<tr>';
+       b+='<td id="settTd'+i+'">'+i+'</td>';
+	   wd++;
+	   if (i==endD){
+           for (var k=7;k>=wd;k--){
+	           b+='<td class="outOfRange">&nbsp;</td>';
+	       }
+		   b+='</tr>\n';
+		   
+	   } else if (wd==8){
+	      b+='</tr>';
+		  wd=1;
+		  continue;
+	   }
+
+	   
+   }
+   b+='</tbody>';
+   el('settTable').innerHTML = b;
+   return b;
+}
+
+
+var shed = new Shedule();
+shed.init();
+
+
+function onl(){
+   shed.initSettingsDates();
+   shed.initSettingsTable();
+   shed.generate();
+}
+
+function refreshSettings(){
+  shed.loadSettingsDates();
+  shed.initSettingsTable();
+  shed.generate();
+}
+
+
+</script>
+<link rel="stylesheet" href="raspis_styles.css">
+</head>
+
+<body onload="onl()">
+<h2>Настройки</h2>
+<div id="settingsPane">
+<h3>Период</h3>
+С <input type="text" id="fromDateSett" readonly="true"/> по <input type="text" id="toDateSett" readonly="true"/> <span id="settMonth" ></span> <span id="settYear"></span> года 
+<!-- <button onclick="if (confirm('Перегенрация расписания приведет к потере настроек, которые были сделаны на этой странице вручную. Продолжить?')) refreshSettings()">Сгенерировать</button>
+-->
+
+<table id="settTable" align="center">
+</table>
+</div>
+
+
+<h2>Расписание</h2>
+<div id="pane">
+  <table id="shed_table" width="90%" cellpadding="10" align="center">
+    
+  </table>
+</div>
+<h2>html для сайта:</h2>
+<textarea id="htmlTA"></textarea>
+<h2>Текст для Vibera:</h2>
+<div id="txtTA" align="left"></div>
+<!--<textarea id="txtTA"></textarea>-->
+
+<!--
+<textarea id="descrTA"></textarea>
+<iframe id="loadFrame" src="javascript:void(0)"/>
+-->
+</body>
+</html>
