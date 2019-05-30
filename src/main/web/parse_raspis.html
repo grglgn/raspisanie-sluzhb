@@ -45,12 +45,15 @@
 
             //output
             b += '<tbody>\n';
+            var bb='';
             for (var i = 0; i < shed.days.length; i++){
                   b += shed_day_to_html(shed.days[i]);
+                  bb+= shed.dayToText(shed.days[i]);
             }
             b += '</tbody>\n';
             el('shed_table').innerHTML = b;
             el('htmlTA').innerText = b;
+            el('txtTA').innerText = bb;
         }
     </script>
     <link rel="stylesheet" href="raspis_styles.css">

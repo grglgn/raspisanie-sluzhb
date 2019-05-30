@@ -1,6 +1,6 @@
 <html>
 <head>
-<meta charset="utf-8">
+<META content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 <script src="jquery-3.4.1.js"></script>
 <script src="raspis_api.js"></script>
 <script>
@@ -131,7 +131,7 @@ Shedule.prototype.generate = function(){
   var bt= '';
   for (var i = 0; i < this.days.length; i++){
       b += shed_day_to_html(this.days[i], cfg.WD);
-	  bt += this.dayToText(this.days[i]);
+	  bt += this.dayToText(this.days[i], cfg);
   }
   b += '</tbody>\n';
   el('shed_table').innerHTML = b;
@@ -159,20 +159,6 @@ function fmtDateForCalendar(day,mon){
    return mStr+dStr;
 }
 
-Shedule.prototype.dayToText = function(dayObj){
-  var ddata = dayObj.data
-  var sluNum = ddata.slu.length;
-  if (sluNum == 0) return '';
-  var sl = ddata.slu[0];
-  var b =  '\n-----------------------------\n'+
-  cfg.WD[ddata.weekDay] + ', ' + ddata.day+' '+ ddata.month+'\n';
-  b+='-----------------------------\n';
-  for (var i = 0; i < sluNum; i++){
-      sl = ddata.slu[i];
-	  b+= sl.time+' '+sl.title+'\n';
-  }
-  return b;
-};
 
 Shedule.prototype.initSettings = function(){
 this.initSettingsDates();

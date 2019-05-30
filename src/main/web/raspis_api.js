@@ -4,6 +4,27 @@ var Shedule = function(startDt, endDt){
    this.endDate = endDt;
 };
 
+Shedule.prototype.dayToText = function(dayObj, ccfg){
+  var ddata = dayObj.data
+  var sluNum = ddata.slu.length;
+  if (sluNum == 0) return '';
+  var sl = ddata.slu[0];
+  var b =  '\n-----------------------------\n';
+  if (ccfg){
+      b += ccfg.WD[ddata.weekDay] + ', ' + ddata.day+' '+ ddata.month+'\n';
+  } else {
+      b += ddata.weekDay + ', ' + ddata.day+' '+ ddata.month+'\n';
+  }
+
+  b+='-----------------------------\n';
+  for (var i = 0; i < sluNum; i++){
+      sl = ddata.slu[i];
+	  b+= sl.time+' '+sl.title+'\n';
+  }
+  return b;
+};
+
+
 function ShedDay(d, wd, m, y, prazd, descr, sluArr){
   this.data = {};
   this.data.day = d;
