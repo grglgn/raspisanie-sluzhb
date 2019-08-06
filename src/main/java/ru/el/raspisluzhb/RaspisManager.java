@@ -1,7 +1,10 @@
 package ru.el.raspisluzhb;
 
 import java.io.*;
-import java.util.Date;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * User: eloginov
@@ -99,7 +102,37 @@ public class RaspisManager {
     }
 
     public static void main(String[] args) {
-        RaspisManager mgr = new RaspisManager();
-        mgr.load();
+        /*RaspisManager mgr = new RaspisManager();
+        mgr.load();*/
+        test();
+    }
+
+    private static void test(){
+        //List<String> l = Stream.of("wqe","rty","asda");
+        Random r = new Random();
+        r.ints(1000,1,1000)
+                .filter(i -> String.valueOf(i).startsWith("5")).limit(20)
+                .distinct().sorted()
+                .mapToObj(i -> "number "+i)
+                .forEach(System.out::println);
+        //String genStr =  new String(r.ints(100,1,100).toArray());
+
+        //.flatMap();
+
+//        Stream s = Stream.of("wqe","rty","asda");
+        //s.collect()
+        //s.collect()
+//        System.out.println(s.);
+
+
+    }
+
+    private  static  void printRandomText(){
+        Random r = new Random();
+        int words = r.nextInt(50);
+        for(int i = 0; i < words; i++){
+            int syms = r.nextInt();
+            //r.ints().collect(Collectors.);
+        }
     }
 }
