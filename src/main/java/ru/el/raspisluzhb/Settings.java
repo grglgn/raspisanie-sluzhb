@@ -2,23 +2,30 @@ package ru.el.raspisluzhb;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.Properties;
+import java.util.StringJoiner;
 import java.util.logging.Level;
 
 /**
  * User: eloginov
  * Date: 15.03.19
  */
-public class Settings {
+public final class Settings {
     private String calendarUrl;
     private Date beginDate;
     private Date endDate;
+    private String beginDateStr;
+    private String endDateStr;
+
     private static Object monitor = new Object();
-    private Properties props;
+//    private Properties props;
+    private Map<String,String> props;
     private DateFormat outputDateFormat;
 
     private static Settings instance;
@@ -26,15 +33,55 @@ public class Settings {
     private static DateFormat fmt = new SimpleDateFormat("dd-MM-yyyy");
     private static DateFormat OUTPUT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
-    public Settings() {
-        props = new Properties();
+    private Settings() {
+        Properties propsTmp = new Properties();
         try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(SETT_FILE)) {
-            props.load(is);
+            propsTmp.load(is);
         } catch (IOException ex) {
             throw new RaspisLoaderException("Failed to load " + SETT_FILE, ex);
         }
+        //todo props is allowed in lambda?
+        propsTmp.entrySet().stream().forEach(e->props.put((String)e.getKey(), (String)e.getValue()));
     }
 
+    public static <T extends V, V> T instantiateConfClass(String confName, Class<V> interfaceCls){
+        String className = getInstance().getConfProperty(confName);
+        try {
+            Class<T> cls = (Class<T>) Class.forName(getInstance().getConfProperty(confName));
+            T tInst = cls.getConstructor().newInstance();
+            return tInst;
+        } catch (ClassNotFoundException ce) {
+            throw new RaspisLoaderException(String.format("'%' conf property probably has a wrong value, class not found: %" +
+                    confName, getInstance().getConfProperty("confName")), ce);
+        } catch (NoSuchMethodException ne) {
+            throw new RaspisLoaderException(
+                    String.format("The specified in the '%' conf property class doesn't have a non-arg constructor: ", confName)
+                    , ne);
+        } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
+            throw new RaspisLoaderException(String.format("Failed to instantiate instance of %", className), e);
+        }
+    }
+
+    public String getConfProperty(String propName){
+        return props.get(propName);
+    }
+
+    public String getRaspisProviderClassName(){
+        return props.get("raspisProvider");
+    }
+
+    public String getProxyAdress(){
+        return props.get("proxyAddress");
+    }
+
+    public int getProxyPort(){
+        String p = props.get("proxyPort");
+        try {
+            return Integer.parseInt(p);
+        } catch (NumberFormatException ne) {
+            throw new RaspisLoaderException("Configured prop value 'proxyPort' is not a  number:"+p,ne);
+        }
+    }
 
     public String getCalendarUrl() {
         if (calendarUrl == null) calendarUrl = (String) props.get("calendarUrl");
@@ -64,6 +111,10 @@ public class Settings {
         return endDate;
     }
 
+    public String getLoadedContentFileName(){
+        return new StringBuffer().append(beginDateStr).append('-').append(endDateStr).append(".txt").toString();
+    }
+
     private Date obtainDateProp(String propName) {
         String pv = (String) props.get(propName);
         Date date;
@@ -78,7 +129,7 @@ public class Settings {
     public synchronized static Settings getInstance() {
         if (instance == null) {
             synchronized (monitor) {
-                if (instance == null) instance = new Settings();//"double check" - dont remove
+                if (instance == null) instance = new Settings();//"double check"
             }
         }
         return instance;
