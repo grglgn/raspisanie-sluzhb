@@ -23,5 +23,6 @@ public class RaspisManager {
     public static void main(String[] args) {
         RaspisManager mgr = new RaspisManager();
         mgr.load();
+        //Logger.d("Settings:"+Settings.getInstance().getConfPropsAll());
     }
 }

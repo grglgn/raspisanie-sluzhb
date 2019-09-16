@@ -6,10 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
-import java.util.Properties;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.logging.Level;
 
 /**
@@ -25,7 +22,7 @@ public final class Settings {
 
     private static Object monitor = new Object();
 //    private Properties props;
-    private Map<String,String> props;
+    private Map<String,String> props = new HashMap<String,String>();
     private DateFormat outputDateFormat;
 
     private static Settings instance;
@@ -44,6 +41,10 @@ public final class Settings {
         propsTmp.entrySet().stream().forEach(e->props.put((String)e.getKey(), (String)e.getValue()));
     }
 
+    public Map<String,String> getConfPropsAll(){
+        return Collections.unmodifiableMap(props);
+    }
+
     public static <T extends V, V> T instantiateConfClass(String confName, Class<V> interfaceCls){
         String className = getInstance().getConfProperty(confName);
         try {
@@ -51,14 +52,14 @@ public final class Settings {
             T tInst = cls.getConstructor().newInstance();
             return tInst;
         } catch (ClassNotFoundException ce) {
-            throw new RaspisLoaderException(String.format("'%' conf property probably has a wrong value, class not found: %" +
+            throw new RaspisLoaderException(String.format("'%s' conf property probably has a wrong value, class not found: %s",
                     confName, getInstance().getConfProperty("confName")), ce);
         } catch (NoSuchMethodException ne) {
             throw new RaspisLoaderException(
-                    String.format("The specified in the '%' conf property class doesn't have a non-arg constructor: ", confName)
+                    String.format("The specified in the '%s' conf property class doesn't have a non-arg constructor: ", confName)
                     , ne);
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
-            throw new RaspisLoaderException(String.format("Failed to instantiate instance of %", className), e);
+            throw new RaspisLoaderException(String.format("Failed to instantiate instance of %s", className), e);
         }
     }
 
@@ -66,8 +67,9 @@ public final class Settings {
         return props.get(propName);
     }
 
-    public String getRaspisProviderClassName(){
-        return props.get("raspisProvider");
+    public String getConfProperty(String propName, String defVal){
+        String val = props.get(propName);
+        return val == null ? defVal : val;
     }
 
     public String getProxyAdress(){

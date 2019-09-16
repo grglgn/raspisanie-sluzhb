@@ -14,11 +14,9 @@ public class UrlLoader {
     public String loadUrl(String url){
             try {
                 URL urlObj = new URL(url);
-
                 String proxyAddr = Settings.getInstance().getProxyAdress();
                 HttpURLConnection conn;
                 if (proxyAddr != null){
-
                     Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyAddr, 8080));
                     conn = (HttpURLConnection)urlObj.openConnection(proxy);
                 } else {

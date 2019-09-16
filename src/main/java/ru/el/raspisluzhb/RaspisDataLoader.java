@@ -16,7 +16,7 @@ public class RaspisDataLoader {
         this.beginDate = Settings.getInstance().getBeginDate();
         this.endDate = Settings.getInstance().getEndDate();
         this.provider = Settings.instantiateConfClass("raspisProvider", RaspisProvider.class);
-        this.store = Settings.instantiateConfClass("raspisStore", RaspisProvider.class);
+        this.store = Settings.instantiateConfClass("raspisStore", RaspisStore.class);
 
     }
 
@@ -26,27 +26,16 @@ public class RaspisDataLoader {
         Date dt = this.beginDate;
         store.open();
         while (dt.compareTo(this.endDate) <= 0) {
-//            try (FileWriter fw = new FileWriter(fname)) {
-            //handle dt
-            //String url = provider.getUrl(dt);
-            //String fname = "bu-" + Settings.getInstance().getOutputDateFormat().format(dt);
-            //ExecutorService
             String url = provider.getUrl(dt);
+            Logger.d(()->"Connecting to "+url);
             String urlContent = urlLoader.loadUrl(url);
+            Logger.d(()->"Parsing... ");
             DayData dd = provider.parse(dt, urlContent);
+            Logger.d(()->"Storing... ");
             store.storeDay(dd);
-                /*fw.write(urlContent);
-                fw.write(LINE_SEPAR);
-                fw.write("==========================================================");
-                fw.write(LINE_SEPAR);
-                */
+            Logger.d(()->"Done for "+Settings.getInstance().
+                    getOutputDateFormat().format(dd.date));
             dt = new Date(dt.getTime() + day_ms);
-           /* } catch (IOException ie) {
-                Logger.err(ie, "Failed to write to " + fname);
-            }
-           */ // }
-
-
         }
         store.close();
     }
