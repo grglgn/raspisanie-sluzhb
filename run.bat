@@ -1,1 +1,1 @@
-java -jar target\raspisanie-sluzhb-1.0-jar-with-dependencies.jar
+java -jar target\raspisanie-sluzhb-1.0-jar-with-dependencies.jar 01-10-2019 31-10-2019

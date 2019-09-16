@@ -21,6 +21,10 @@ public class RaspisManager {
     }
 
     public static void main(String[] args) {
+        if (args.length>=2){
+            Settings.getInstance().setProp("beginDate", args[0]);
+            Settings.getInstance().setProp("endDate", args[1]);
+        }
         RaspisManager mgr = new RaspisManager();
         mgr.load();
         //Logger.d("Settings:"+Settings.getInstance().getConfPropsAll());

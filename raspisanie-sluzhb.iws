@@ -30,21 +30,10 @@
       <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/raspisanie-sluzhb-1.0-jar-with-dependencies.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.iws" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/DayData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/DayData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisDataLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/UrlLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/UrlLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/BogoslUkazRaspisProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/BogoslUkazRaspisProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/FileRaspisStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/FileRaspisStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/JsonStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/JsonStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/raspis-loader-config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/raspis-loader-config.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -213,8 +202,8 @@
     <configuration name="RaspisManager" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="ru.el.raspisluzhb.RaspisManager" />
       <module name="raspisanie-sluzhb" />
+      <option name="PROGRAM_PARAMETERS" value="01-10-2019 31-10-2019" />
       <option name="VM_PARAMETERS" value="-ea" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
         <option name="TRANSPORT" value="0" />
@@ -278,34 +267,6 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration name="raspisanie-sluzhb []" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list />
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2">
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="false" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
     <configuration name="raspisanie-sluzhb single" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -351,7 +312,6 @@
     <list>
       <item itemvalue="Application.RaspisManager" />
       <item itemvalue="Application.BogoslUkazRaspisProvider" />
-      <item itemvalue="Maven.raspisanie-sluzhb []" />
       <item itemvalue="Maven.raspisanie-sluzhb single" />
     </list>
     <recent_temporary>
@@ -383,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565814852170</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="коммит 3">
+      <created>1568649091469</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1568649091469</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -450,6 +417,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/FileRaspisStore.java</url>
           <line>30</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisManager.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Settings.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

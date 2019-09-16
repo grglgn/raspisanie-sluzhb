@@ -7,7 +7,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.logging.Level;
 
 /**
  * User: eloginov
@@ -17,8 +16,6 @@ public final class Settings {
     private String calendarUrl;
     private Date beginDate;
     private Date endDate;
-    private String beginDateStr;
-    private String endDateStr;
 
     private static Object monitor = new Object();
 //    private Properties props;
@@ -28,6 +25,7 @@ public final class Settings {
     private static Settings instance;
     private static final String SETT_FILE = "raspis-loader-config.properties";
     private static DateFormat fmt = new SimpleDateFormat("dd-MM-yyyy");
+//    private static DateFormat OUTPUT_DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
     private static DateFormat OUTPUT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     private Settings() {
@@ -113,9 +111,6 @@ public final class Settings {
         return endDate;
     }
 
-    public String getLoadedContentFileName(){
-        return new StringBuffer().append(beginDateStr).append('-').append(endDateStr).append(".txt").toString();
-    }
 
     private Date obtainDateProp(String propName) {
         String pv = (String) props.get(propName);
@@ -137,4 +132,7 @@ public final class Settings {
         return instance;
     }
 
+    void setProp(String name, String value){
+        this.props.put(name, value);
+    }
 }
