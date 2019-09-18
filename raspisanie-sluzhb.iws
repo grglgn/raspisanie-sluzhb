@@ -12,7 +12,6 @@
       <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-04.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-05" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-05.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-data.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/raspis-loader-config.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/DayData.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/Logger.class" afterDir="false" />
@@ -30,10 +29,6 @@
       <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/raspisanie-sluzhb-1.0-jar-with-dependencies.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.iws" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Settings.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -350,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568649091469</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="коммит 3">
+      <created>1568650871510</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1568650871510</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -367,7 +369,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="PERFORM_UPDATE_IN_BACKGROUND" value="false" />
     <option name="PERFORM_COMMIT_IN_BACKGROUND" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
