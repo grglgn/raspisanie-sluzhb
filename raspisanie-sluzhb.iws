@@ -12,6 +12,7 @@
       <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-04.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-05" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-05.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/web/raspisanie-sluzhb.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/raspis-loader-config.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/DayData.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/Logger.class" afterDir="false" />
@@ -28,7 +29,7 @@
       <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/impl/JsonStore.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/raspisanie-sluzhb-1.0-jar-with-dependencies.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.iws" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.iws" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,6 +86,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -111,6 +113,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
@@ -163,7 +166,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.RaspisManager">
+  <component name="RunManager" selected="Maven.raspisanie-sluzhb single">
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -352,7 +355,21 @@
       <option name="project" value="LOCAL" />
       <updated>1568650871510</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Рабочий jar">
+      <created>1568839435307</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1568839435307</updated>
+    </task>
+    <task id="LOCAL-00005" summary="сборка">
+      <created>1568839503505</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1568839503505</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -375,7 +392,9 @@
     <MESSAGE value="коммит 1" />
     <MESSAGE value="коммит 2" />
     <MESSAGE value="коммит 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="коммит 3" />
+    <MESSAGE value="Рабочий jar" />
+    <MESSAGE value="сборка" />
+    <option name="LAST_COMMIT_MESSAGE" value="сборка" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -418,11 +437,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/FileRaspisStore.java</url>
           <line>30</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisManager.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Settings.java</url>
