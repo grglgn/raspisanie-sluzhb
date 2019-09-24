@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f244987-2aab-4544-aeaf-63697d448e77" name="Default" comment="коммит 3">
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-01" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-01.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-02" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-02.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-03" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-03.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-04" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-04.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-05" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-05.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/web/raspisanie-sluzhb.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/raspis-loader-config.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/DayData.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/Logger.class" afterDir="false" />
@@ -29,7 +18,10 @@
       <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/impl/JsonStore.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.iws" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/web/raspisanie-slu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/web/raspisanie-slu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/web/raspisanie.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/web/raspisanie.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,6 +88,11 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
@@ -369,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568839503505</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="коммит 3">
+      <created>1569249951678</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1569249951678</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -391,10 +395,10 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="коммит 1" />
     <MESSAGE value="коммит 2" />
-    <MESSAGE value="коммит 3" />
     <MESSAGE value="Рабочий jar" />
     <MESSAGE value="сборка" />
-    <option name="LAST_COMMIT_MESSAGE" value="сборка" />
+    <MESSAGE value="коммит 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="коммит 3" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
