@@ -4,16 +4,27 @@
     <meta charset="UTF-8">
     <title>Составление расписания служб</title>
     <script src="jquery-3.4.1.js"></script>
+<!--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+    <script src="jquery-ui.js"></script>
     <script src="../../../RASPIS_STORE/bu-data.js"></script>
     <script src="raspis_api.js"></script>
     <script src="raspisanie-slu.js"></script>
-    <link rel="stylesheet" href="raspis_styles.css">
+    <link rel="stylesheet" href="jquery-ui.css">
+    <link rel="stylesheet" href="raspisanie.css">
+
 </head>
-<body onload="loadUI()">
+<body >
 <h2>Расписание служб</h2>
 
+<!--
 <span id="startDtSpan"></span>
 <span id="endDtSpan"></span>
+-->
+
+<input id="startDtInp"></input>
+<input id="endDtInp"></input>
+<button id="loadBtn">Загрузить</button>
+
 
 </body>
 </html>

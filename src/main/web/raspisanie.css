@@ -31,7 +31,5 @@
  #descrTA{width:900px; height:300px;}
  body, #settingsPane {text-align:center;}
 
- .clDay{width:30;}
- .clMonth{width:100;}
- .clYear{width:50;}
+#startDtInp, #endDtInp {font-size:18px; }
 
