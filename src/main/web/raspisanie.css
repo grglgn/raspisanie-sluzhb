@@ -33,3 +33,6 @@
 
 #startDtInp, #endDtInp {font-size:18px; }
 
+.slu-cnt {width:100%; height:50; text-align:right}
+.slu-cnt a {display:block; position:relative; font-size:10px; font-weight:bold; font-family:'Verdana'}
+

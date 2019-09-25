@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Составление расписания служб</title>
-    <script src="jquery-3.4.1.js"></script>
-<!--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+    <script src="jquery-2.1.1.js"></script>
+<!--    <script src="jquery-3.4.1.js"></script>-->
     <script src="jquery-ui.js"></script>
+    <script src="w2ui.js"></script>
     <script src="../../../RASPIS_STORE/bu-data.js"></script>
+    <script src="el_api.js"></script>
     <script src="raspis_api.js"></script>
     <script src="raspisanie-slu.js"></script>
     <link rel="stylesheet" href="jquery-ui.css">
+    <link rel="stylesheet" href="w2ui.css">
     <link rel="stylesheet" href="raspisanie.css">
 
 </head>
@@ -24,7 +27,12 @@
 <input id="startDtInp"></input>
 <input id="endDtInp"></input>
 <button id="loadBtn">Загрузить</button>
+<!--<div id="myToolbar" style=" margin-top:30px;"></div>-->
 
+<div id="tableCnt" style="width: 100%; height: 350px; margin-top:10px;"></div>
+
+<div id="console">
+</div>
 
 </body>
 </html>
