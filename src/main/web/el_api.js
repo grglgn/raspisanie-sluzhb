@@ -12,6 +12,6 @@ elo.parseDate = function(str, mask){
 elo.msg = function(str){
       w2popup.open({
           title: 'Инфо',
-          body: '<div class="w2ui-centered">'+str+'</div>'
+          body: '<div class="w2ui-centered">'+w2utils.encodeTags(str)+'</div>'
       });
 };

@@ -29,10 +29,10 @@
  #htmlTA, #txtTA, #originTA{width:900px; height:300px;}
  #txtTA{margin-left:100px;}
  #descrTA{width:900px; height:300px;}
- body, #settingsPane {text-align:center;}
+ body, #settingsPane {text-align:center; background-color:rgb(210,229,249);}
 
 #startDtInp, #endDtInp {font-size:18px; }
 
 .slu-cnt {width:100%; height:50; text-align:right}
-.slu-cnt a {display:block; position:relative; font-size:10px; font-weight:bold; font-family:'Verdana'}
-
+.slu-cnt button {font-size:10px; font-family:'Verdana'}
+.chSluBtn (display:block; height:30px; width:30px)
