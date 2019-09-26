@@ -65,7 +65,7 @@ function g(){ return w2ui['tableCnt'];}
 
 function constrSluHtml(ind){
     //var rec = g().get(i);
-    var rec = elo.bsData;
+    var rec = elo.bsData[ind];
     var arr = rec.slu;
     if (arr && arr.length){
         var b='';
