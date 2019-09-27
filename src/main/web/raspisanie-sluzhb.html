@@ -17,20 +17,62 @@
 
 </head>
 <body >
-<h2>Расписание служб</h2>
+<h2 style="color:darkblue">Расписание служб</h2>
+
+<!--<div style="width:50%; background-color: red">-->
+<!--<label>C:</label><input id="startDtInp" type="eu-date"/><label>По:</label><input id="endDtInp" name="endDt"  />-->
 
 <!--
-<span id="startDtSpan"></span>
-<span id="endDtSpan"></span>
--->
 
-<input id="startDtInp"></input>
-<input id="endDtInp"></input>
-<button class="w2ui-btn" id="loadBtn">Загрузить</button>
+<div class="w2ui-field">
+    <label>C:</label>
+    <div>
+        <input id="startDtInp" type="eu-date"/>
+    </div>
+</div>
+    </span>
+<span>
+<div class="w2ui-field">
+    <label>По:</label>
+    <div>
+        <input id="endDtInp" name="endDt"  />
+    </div>
+</div>
+-->
+<!--</div>-->
+<center><div id="form" style="width: 400px;">
+    <div class="w2ui-page page-0">
+        <div class="w2ui-field">
+            <label>C:</label>
+            <div>
+                <input id="startDtInp" name="startDt"/>
+            </div>
+        </div>
+        <div class="w2ui-field">
+            <label>По:</label>
+            <div>
+                <input id="endDtInp" name="endDt"/>
+            </div>
+        </div>
+
+    </div>
+    <div class="w2ui-buttons">
+        <button class="w2ui-btn" style=" height:40px; margin-top:30px;  margin-bottom:30px;"
+                id="loadBtn"
+                name="load">Загрузить данные церк.календаря</button>
+    </div>
+</div>
+    </center>
+<!--<button class="w2ui-btn" id="loadBtn">Загрузить</button>-->
+
+
+
+
 <!--<div id="myToolbar" style=" margin-top:30px;"></div>-->
 
-<div id="tableCnt" style="width: 100%; height: 350px; margin-top:10px;"></div>
+<div id="tableCnt" style="width: 100%; max-width:1000px; height: 350px; margin-bottom:20px;"></div>
 <button class="w2ui-btn" id="processBtn">Сформировать расписание</button>
+<br>
 
 <div id="console">
 </div>

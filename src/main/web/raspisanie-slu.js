@@ -1,31 +1,41 @@
 $(function (){
-// $("#startDtInp").append(newCalendar("startDt"));
-// $("#endDtSpan").append(newCalendar("endDt"));
-var clConf = {
-dateFormat: 'dd-mm-yy',
-monthNames:["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"],
-monthNamesShort:["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"],
-dayNamesMin:["Пн","Вт","Ср","Чт","Пт","Сб","Вс"],
-dayNames:["Пн","Вт","Ср","Чт","Пт","Сб","Вс"],
-changeYear:true,
-changeMonth:true
-
-};
-//$.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
-$("#startDtInp" ).datepicker(clConf);
-$("#endDtInp" ).datepicker(clConf);
-//$("#loadBtn").button();
+$('#startDtInp').w2field('date', {format:'dd.mm.yyyy'});
+$('#endDtInp').w2field('date', {format:'dd.mm.yyyy'});
+$("#processBtn").hide();
 
 elo.bsData = prepareBuData(buData); //buData must be defined in one of included js files
 
-$("#loadBtn").on("click", function(){
+function filterGridData(){
+if (true) return elo.bsData;
+  var startDtV = $('#startDtInp').val();//datepicker("getDate");
+  var endDtV = $('#endDtInp').val();//datepicker("getDate");
+  //elo.msg('startDtV: '+startDtV);
+  var dataForGrid = [];
+  var startDtArr = elo.toNumberArr(startDtV.split('.')).reverse();
+  var endDtArr = elo.toNumberArr(endDtV.split('.')).reverse();
+  for (var i in elo.bsData){
+      var dd = elo.bsData[i];
+      var dif = compareDateArrays(dd.dateArr, startDtArr);
+      if (compareDateArrays(dd.dateArr, startDtArr) >= 0 &&
+          compareDateArrays(dd.dateArr, endDtArr) <= 0){
+              dataForGrid[dataForGrid.length] = dd;
+      }
+  }
+  return dataForGrid;
+}
 
-  //elo.msg('My buData:<br>'+buDataToArr(buData).toString());
 
-  //recs.forEach(d => alert(d.dateStr));
+var drawGrid = function(){
+
+  var dataForGrid = filterGridData();
+
+  if (g()) {
+      g().destroy();
+  }
+
   $('#tableCnt').w2grid({
           name: 'tableCnt',
-          records: elo.bsData,
+          records: dataForGrid,
           columns: [
               { field: 'dateStr', caption: 'Д', size: '40px' , min:40},
               { field: 'weekDay', caption: 'ДH', size: '40px', min:40 },
@@ -55,11 +65,14 @@ $("#loadBtn").on("click", function(){
           ],
            onDblClick:function(event){
               var record = this.get(event.recid);
-              elo.msg('event.column:'+event.column+'  '+record.dsc);
+              elo.msg('event.column:'+event.column+'  '+w2utils.decodeTags(record.dsc));
           }
       });
+      $("#processBtn").show();
+}
 
-});
+$("#loadBtn").on("click", drawGrid);
+
 
 function g(){ return w2ui['tableCnt'];}
 
@@ -71,9 +84,9 @@ function constrSluHtml(ind){
         var b='';
         for (var i in arr){
             var sl = arr[i];
-            b+='<div';
-            if (sl.isPrazdn) b+=' class="prazdn"';
-            b+='>';
+            b+='<div class="sluCnt';
+            if (sl.isPrazdn) b+=' prazdn';
+            b+='">';
             b+=w2utils.encodeTags(sl.time + ' ' + sl.title);
             b+='</div>';
         }
@@ -92,12 +105,7 @@ $(".chSluBtn").on("click", function(ev){
 */
 
 $("#processBtn").on("click", function(event){
-    var arr = g().getSelection();
-    if (arr && arr.length){
-       var rec = g().get(arr[0]);
-       elo.msg('rec:'+rec.recid+' prazdn:'+rec.prazdn+" date:"+rec.dateStr);
-    }
-    else elo.msg('Nothing selected');
+    //todo
 
 });
 
@@ -106,13 +114,13 @@ elo.editSlu = function(ind){
    elo.msg('dsc:'+rec.dsc);
 }
 
-function prepareBuData(buDt){
+function prepareBuData(buDt, startDt, endDt){
     var arr = [];
     for (d in buDt){
        var dayDt = buDt[d];
        var dArr = d.split('-');
        dayDt['dateStr'] = dArr[2]+'.'+dArr[1];//+'-'+dArr[0];
-       for (var i in dArr) dArr[i] = parseInt(dArr[i]);//conv string arr to num arr
+       elo.toNumberArr(dArr);
        dayDt['dateArr'] = dArr;
        dayDt['sluzhbi']='';
        //todo remove
@@ -136,7 +144,7 @@ function prepareBuData(buDt){
        }
 
     }
-    var arrS = arr.sort(sortDateArr);
+    var arrS = arr.sort(sortDateArrFn);
     for (var i=0;i<arr.length;i++){
         arr[i]['recid'] = i+1;
     }
@@ -154,9 +162,13 @@ function fmtWeekDay(dd){
 
 }
 
-function sortDateArr(a,b){
+function sortDateArrFn(a,b){
     var ada = a['dateArr'];
     var bda = b['dateArr'];
+    return compareDateArrays(ada,bda);
+}
+
+function compareDateArrays(ada,bda){
     var difY = ada[0] - bda[0];
     if (difY != 0) return difY;
     var difM = ada[1] - bda[1];
