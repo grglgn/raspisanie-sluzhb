@@ -65,13 +65,29 @@ var drawGrid = function(){
           ],
            onDblClick:function(event){
               var record = this.get(event.recid);
-              elo.msg('event.column:'+event.column+'  '+w2utils.decodeTags(record.dsc));
+              //elo.msg('event.column:'+event.column+'  '+w2utils.decodeTags(record.dsc));
+              showEditWindow(record);
+
+
           }
       });
       $("#processBtn").show();
 }
 
 $("#loadBtn").on("click", drawGrid);
+
+function showEditWindow(rec){
+   $('#popup1').w2popup({
+/*
+       onOpen: function(){
+           $('#sluWinTitle').val('привет');
+       },
+*/
+       title: 'Cлужбы на дату: <strong>'+rec['dateStr']+'</strong>'
+   });
+
+//   $('#sluWinTitle').val(rec['dateStr']);
+}
 
 
 function g(){ return w2ui['tableCnt'];}
@@ -84,7 +100,7 @@ function constrSluHtml(ind){
         var b='';
         for (var i in arr){
             var sl = arr[i];
-            b+='<div class="sluCnt';
+            b+='<div class="slu-cnt';
             if (sl.isPrazdn) b+=' prazdn';
             b+='">';
             b+=w2utils.encodeTags(sl.time + ' ' + sl.title);

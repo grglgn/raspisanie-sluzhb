@@ -33,5 +33,5 @@
 
 #startDtInp, #endDtInp {font-size:18px; }
 
-.slu-cnt {margin:10px; text-align:right}
+.slu-cnt {margin:3px; text-align:left; vertical-align:middle;height:25px; border: 1px solid lightgrey;}
 .w2ui-field label {color:darkblue}
