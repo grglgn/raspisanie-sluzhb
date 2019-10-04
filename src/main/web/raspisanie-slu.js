@@ -76,21 +76,78 @@ var drawGrid = function(){
 
 $("#loadBtn").on("click", drawGrid);
 
+var slu_times = ['8-00','8-30', '9-00', '11-00', '12-00', '16-00', '17-00', '18-00'];
+var slu_names = ['Часы. Исповедь. Литургия', 'Вечерня. Утреня.', 'Всенощное бдение', 'Вечерня. Утреня с полиелеем', 'Утреня. Часы. Изобразительны. Вечерня с Литургией преждеосвященных Даров', 'Часы. Изобразительны. Вечерня с Литургией преждеосвященных Даров.','Царские Часы', 'Крещение', 'Венчание'];
+var slu_names_arr = [];
+var slu_names_map = {};
+
+function adslu(key, stit){
+   slu_names_arr[slu_names_arr.length] = stit;
+   slu_names_map[key]=stit;
+}
+adslu('chasi','Часы');
+adslu('tschasi','Царские Часы');
+
+                 'Вечерня. Утреня с полиелеем', 'Утреня. Часы. Изобразительны. Вечерня с Литургией преждеосвященных Даров', 'Часы. Изобразительны. Вечерня с Литургией преждеосвященных Даров.'
+
+adslu('lit','Литургия');
+adslu('litVV','Литургия свт.Василия Великого');
+adslu('litIZ','Литургия свт.Иоанна Златоустаго');
+adslu('vb','Всенощное бдение');
+adslu('vvech','Великая вечерня');
+adslu('vech','Вечерня');
+adslu('polutr','Полиелейная утреня');
+adslu('utr','Утреня');
+adslu('kresh','Крещение');
+adslu('isp','Исповедь');
+adslu('izo','Изобразительны');
+adslu('vench','Венчание');
+
 function showEditWindow(rec){
    $('#popup1').w2popup({
-/*
-       onOpen: function(){
-           $('#sluWinTitle').val('привет');
-       },
-*/
+
+   /*    onOpen: function(){
+
+       },*/
        title: 'Cлужбы на дату: <strong>'+rec['dateStr']+'</strong>'
    });
+   $('#sluAddBtn').off();
+   $('#sluAddBtn').on('click', function(event){
+      editWin_addSlu(rec);
+   });
+   $('#sluTime').w2field('list', { items: slu_times });
+   $('#sluName').w2field('list', { items: slu_names });
 
 //   $('#sluWinTitle').val(rec['dateStr']);
 }
 
+function editWin_addSlu(rec){
+    //elo.msg(JSON.stringify(rec));
+    //var rec = getCurRecord();
+    var count = elo.rec.recid
+    var divid = 'adSl_'+rec.recid;
+    var timeInp = divid+'_t';
+    var nameInp = divid+'_n';
+    $('#addedSluCnt').append(
+        '<div id="'+divid+'"><input type="text" class="sluTime" id="'+timeInp+'"/>'+
+             '<input type="text" id="'+nameInp+'" class="sluName"/></div>');
+    //$('.sluTime > div > input').val('jjj');
+    //$('#'+divid+' > div > input.sluTime').val($('#sluTime').val());
+    $('#'+timeInp).val($('#sluTime').val());
+    $('#'+nameInp).val($('#sluName').val());
+
+}
 
 function g(){ return w2ui['tableCnt'];}
+
+function getCurRecord(){
+   var sel = g().getSelection();
+   if (sel.length) {
+       return g().get(sel[0]);
+   } else {
+       return null;
+   }
+}
 
 function constrSluHtml(ind){
     //var rec = g().get(i);
@@ -162,7 +219,7 @@ function prepareBuData(buDt, startDt, endDt){
     }
     var arrS = arr.sort(sortDateArrFn);
     for (var i=0;i<arr.length;i++){
-        arr[i]['recid'] = i+1;
+        arr[i]['recid'] = i;
     }
     return arr;
 }

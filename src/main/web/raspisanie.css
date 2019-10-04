@@ -35,3 +35,7 @@
 
 .slu-cnt {margin:3px; text-align:left; vertical-align:middle;height:25px; border: 1px solid lightgrey;}
 .w2ui-field label {color:darkblue}
+#addedSluCnt {margin-top:30px; background-color: lightgrey}
+#addedSluCnt div {margin:5px;}
+#addedSluCnt div input.sluTime{width:70px}
+#addedSluCnt div input.sluName{width:250px}
