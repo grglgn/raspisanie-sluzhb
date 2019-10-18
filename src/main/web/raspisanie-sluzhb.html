@@ -10,13 +10,15 @@
     <script src="../../../RASPIS_STORE/bu-data.js"></script>
     <script src="el_api.js"></script>
     <script src="raspis_api.js"></script>
+    <script src="raspisanie-strings.js"></script>
     <script src="raspisanie-slu.js"></script>
     <link rel="stylesheet" href="jquery-ui.css">
     <link rel="stylesheet" href="w2ui.css">
     <link rel="stylesheet" href="raspisanie.css">
 
 </head>
-<body >
+<body>
+<div  style="text-align:center;">
 <h2 style="color:darkblue">Расписание служб</h2>
 
 <!--<div style="width:50%; background-color: red">-->
@@ -40,7 +42,8 @@
 </div>
 -->
 <!--</div>-->
-<center><div id="form" style="width: 400px;">
+<!--<center>-->
+    <div id="form" style="width: 400px;  margin: 0 auto;">
     <div class="w2ui-page page-0">
         <div class="w2ui-field">
             <label>C:</label>
@@ -57,22 +60,25 @@
 
     </div>
     <div class="w2ui-buttons">
-        <button class="w2ui-btn" style=" height:40px; margin-top:30px;  margin-bottom:30px;"
+        <button class="w2ui-btn"
                 id="loadBtn"
                 name="load">Загрузить данные церк.календаря</button>
     </div>
 </div>
-    </center>
+<!--    </center>-->
 <!--<button class="w2ui-btn" id="loadBtn">Загрузить</button>-->
 
 
 
 
 <!--<div id="myToolbar" style=" margin-top:30px;"></div>-->
-
-<div id="tableCnt" style="width: 100%; max-width:1000px; height: 350px; margin-bottom:20px;"></div>
-<button class="w2ui-btn" id="processBtn">Сформировать расписание</button>
-<br>
+<!--<div class="tableCont">-->
+<!--<center>-->
+    <div id="raspGrid"></div>
+    <button class="w2ui-btn" id="processBtn">Сформировать расписание</button>
+<!--</center>-->
+<!-- </div>-->
+        <br>
 
 <div id="console">
 </div>
@@ -82,29 +88,31 @@
     <div rel="title" id="sluWinTitle"></div>
     <div rel="body" style="padding: 10px; line-height: 150%">
 
+
+        <div id="editWin_descrBox">
+
+        </div>
+        <div id="markPrazdnBox">
+            <button></button>
+        </div>
         <input id="sluTime" style="width:80px" type="list"/>
         <input id="sluName"  style="width:250px"  type="list"/>
-        <input type="checkbox" id="sluPrazdn"/><button id="sluAddBtn">Добавить</button>
+        <input type="checkbox" id="sluPrazdnChk" title="Праздничная служба"/>
+        <button id="sluAddBtn">Добавить</button>
 
-        <!--<div class="w2ui-field">
-            <label>C:</label>
-            <div>
-                <input id="startDtInp" name="startDt"/>
-            </div>
+        <div id="editWin_msgBox">
+
         </div>
-        <div class="w2ui-field">
-            <label>По:</label>
-            <div>
-                <input id="endDtInp" name="endDt"/>
-            </div>
-        </div>-->
         <div id="addedSluCnt">
 
         </div>
     </div>
     <div rel="buttons">
-        <button class="w2ui-btn" onclick="">Изменить</button>
+        <button class="w2ui-btn" id="editWin_applyBtn" >Применить</button>
     </div>
+</div>
+
+
 </div>
 
 </body>

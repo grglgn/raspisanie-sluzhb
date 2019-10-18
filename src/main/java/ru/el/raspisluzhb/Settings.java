@@ -118,7 +118,7 @@ public final class Settings {
         try {
             date = fmt.parse(pv);
         } catch (ParseException pex) {
-            throw new RaspisLoaderException("failed to obtain or parse " + propName + " prop", pex);
+            throw new RaspisLoaderException("Failed to find or parse as date the value of '" + propName + "' property", pex);
         }
         return date;
     }

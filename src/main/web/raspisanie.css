@@ -23,19 +23,32 @@
  .outOfRange{
    background-color:grey;
  }
- .prazdn{
-    color:red;
+ .prazdn, .prazdn input{
+    color:red !important;
+ }
+ .notprazdn, .notprazdn input{
+    color:black !important;
  }
  #htmlTA, #txtTA, #originTA{width:900px; height:300px;}
  #txtTA{margin-left:100px;}
  #descrTA{width:900px; height:300px;}
- body, #settingsPane {text-align:center; background-color:rgb(210,229,249);}
+ body, #settingsPane {text-align:center !important; background-color:rgb(210,229,249);}
 
 #startDtInp, #endDtInp {font-size:18px; }
 
-.slu-cnt {margin:3px; text-align:left; vertical-align:middle;height:25px; border: 1px solid lightgrey;}
-.w2ui-field label {color:darkblue}
-#addedSluCnt {margin-top:30px; background-color: lightgrey}
+.slu-cnt {margin:3px; text-align:left; vertical-align:middle;height:25px; }
+.slu-all-cnt{padding: 5px; }
+.bordered{border: 1px dashed brown;}
+.w2ui-field label {color:darkblue;}
+#addedSluCnt {margin-top:3px; background-color: lightgrey; padding:5px; }
 #addedSluCnt div {margin:5px;}
 #addedSluCnt div input.sluTime{width:70px}
 #addedSluCnt div input.sluName{width:250px}
+#editWin_msgBox {margin-top:5px;margin-bottom:5px; padding:3px; height:25px; border: 1px solid lightgrey; color: brown;}
+#editWin_descrBox {margin-bottom:5px; padding:3px; background-color: #dddddd; border: 1px solid lightgrey; width:100%; white-space: normal;}
+#sluAddBtn {margin-left:20px}
+div.tableCont{width: 100%;  text-align:center; background-color: #dddddd;}
+#raspGrid{width:80%; max-width:1000px; height: 350px; margin: 0 auto; margin-bottom:20px;}
+#markPrazdnBox{margin-bottom:10px;}
+#loadBtn{height:40px; margin-top:30px;  margin-bottom:30px;}
+#processBtn{height:40px; margin-top:0px;  margin-bottom:30px;}
