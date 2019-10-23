@@ -23,7 +23,7 @@
  .outOfRange{
    background-color:grey;
  }
- .prazdn, .prazdn input{
+ .prazdn, .prazdn input, .prazdn td{
     color:red !important;
  }
  .notprazdn, .notprazdn input{
@@ -52,3 +52,4 @@ div.tableCont{width: 100%;  text-align:center; background-color: #dddddd;}
 #markPrazdnBox{margin-bottom:10px;}
 #loadBtn{height:40px; margin-top:30px;  margin-bottom:30px;}
 #processBtn{height:40px; margin-top:0px;  margin-bottom:30px;}
+.elomsg{font-size:18px;}

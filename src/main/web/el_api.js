@@ -12,7 +12,7 @@ elo.parseDate = function(str, mask){
 elo.msg = function(str){
       w2popup.open({
           title: 'Инфо',
-          body: '<div class="w2ui-centered">'+w2utils.encodeTags(str)+'</div>'
+          body: '<div class="w2ui-centered elomsg">'+w2utils.encodeTags(str)+'</div>'
       });
 };
 
@@ -20,6 +20,8 @@ elo.toNumberArr = function(arr){
     for (var i in arr) arr[i] = parseInt(arr[i]);
     return arr;
 }
+
+
 
 
 /*{

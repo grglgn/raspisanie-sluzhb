@@ -3,31 +3,23 @@ $('#startDtInp').w2field('date', {format:'dd.mm.yyyy'});
 $('#endDtInp').w2field('date', {format:'dd.mm.yyyy'});
 $("#processBtn").hide();
 
-elo.bsData = prepareBuData(buData); //NOTE! Var "buData" must be defined in one of previously included js files
+//elo.bsData = prepareBuData(buData); //NOTE! Var "buData" must be defined in one of previously included js files
 
-function filterGridData(){
-if (true) return elo.bsData;
-  var startDtV = $('#startDtInp').val();//datepicker("getDate");
-  var endDtV = $('#endDtInp').val();//datepicker("getDate");
-  //elo.msg('startDtV: '+startDtV);
-  var dataForGrid = [];
-  var startDtArr = elo.toNumberArr(startDtV.split('.')).reverse();
-  var endDtArr = elo.toNumberArr(endDtV.split('.')).reverse();
-  for (var i in elo.bsData){
-      var dd = elo.bsData[i];
-      var dif = compareDateArrays(dd.dateArr, startDtArr);
-      if (compareDateArrays(dd.dateArr, startDtArr) >= 0 &&
-          compareDateArrays(dd.dateArr, endDtArr) <= 0){
-              dataForGrid[dataForGrid.length] = dd;
-      }
+
+
+
+function drawGrid(){
+
+
+  try {
+      prepareBSData(); //здесь заполняется elo.bsData
+  } catch (e){
+     elo.msg(e.message);
+//     elo.msg(JSON.stringify(e));
+     return;
   }
-  return dataForGrid;
-}
 
 
-var drawGrid = function(){
-
-  var dataForGrid = filterGridData();
 
   if (g()) {
       g().destroy();
@@ -35,7 +27,7 @@ var drawGrid = function(){
 
   $('#raspGrid').w2grid({
           name: 'raspGrid',
-          records: dataForGrid,
+          records: elo.bsData,
           columns: [
               { field: 'dateStr', caption: 'Д', size: '40px' , min:40},
               { field: 'weekDay', caption: 'ДH', size: '40px', min:40 },
@@ -58,27 +50,20 @@ var drawGrid = function(){
               showEditWindow(record);
 
 
+          },
+          onRender: function(event) {
+              //elo.msg('ququ');
+              setTimeout(function(){
+                 var da = elo.bsData;
+                 for (var i in da){
+                     markRecPrazdn(da[i]);
+                 }
+              },100);
           }
+
 
       });
       $("#processBtn").show();
-
-      /*setTimeout(function(){
-                    var recs = g().records;
-                    for (var i in recs){
-                        var recid = recs[i].recid;
-                        $("#prazdnRecChk"+recid).prop("checked", elo.bsData[recid].prazdn);
-                    }
-
-                    $("input[id^='prazdnRecChk']").click(function(){
-                        var recid = this.id.replace('prazdnRecChk','');
-                        alert(recid);
-                        elo.bsData[recid].prazdn = $(this).prop('checked');
-                        //g().get(recid).prazdn = elo.bsData[recid].prazdn;
-                        g().refreshRow(recid);
-                    });
-      },100);
-*/
 
 }//drawGrid
 
@@ -86,6 +71,11 @@ var drawGrid = function(){
 
 $("#loadBtn").on("click", drawGrid);
 
+function markRecPrazdn(rec){
+   var el = $('#grid_raspGrid_rec_'+rec.recid);
+   if (rec.prazdn) el.addClass('prazdn');
+   else el.removeClass('prazdn');
+}
 
 function showEditWindow(rec){
    $('#popup1').w2popup({
@@ -162,6 +152,7 @@ function editWin_applyChanges(rec){
       elo.bsData[rec.recid].prazdn = rec.prePrazdn;
    }
    g().refreshRow(rec.recid);
+   markRecPrazdn(rec);
    w2popup.close();
 
 }
@@ -312,56 +303,57 @@ elo.editSlu = function(ind){
    elo.msg('dsc:'+rec.dsc);
 }
 
-function prepareBuData(buDt, startDt, endDt){
-    var arr = [];
-    for (d in buDt){
-       var dayDt = buDt[d];
-       var dArr = d.split('-');
-       dayDt['dateStr'] = dArr[2]+'.'+dArr[1];//+'-'+dArr[0];
-       elo.toNumberArr(dArr);
-       dayDt['dateArr'] = dArr;
-       dayDt['sluzhbi']='';
-       //todo remove
 
-       var wd = dayDt['weekDay']
-       if (dayDt['weekDay'].indexOf('Неделя') == 0){
-           dayDt['dsc'] = wd +'. ' + dayDt['dsc'];
-           dayDt['weekDay'] = 'Воcкресенье';
-           dayDt['prazdn'] = true;
-       }
-       dayDt['weekDay'] = WEEK_DAYS_ABBR_MAP[dayDt['weekDay']];//меняем на краткое обозначения дня недели
+//======================= Data handling ===================
 
-       if (dayDt['prazdn'] == undefined) dayDt['prazdn'] = false;
-       arr[arr.length]=dayDt;
-       if (dayDt['prazdn'] == true){
-           //dayDt['w2ui']= { "class": "prazdn" };
-           dayDt['w2ui']= { "style": "color: red !important" };
-       } else {
-         delete dayDt['w2ui'];
-       }
+var WRONG_RANGE_EX = 'Диапазон дат выбран неправильно';
+var DAY_MS = 1000*60*60*24;
 
-    }
-    var arrS = arr.sort(sortDateArrFn);//сортируем по дате
-    for (var i=0;i<arr.length;i++){
-        arr[i]['recid'] = i;
-    }
-    return arr;
+function prepareBSData(){
+  var startDtV = $('#startDtInp').val();//datepicker("getDate");
+  var endDtV = $('#endDtInp').val();//datepicker("getDate");
+  if (!startDtV || !endDtV) throw new Error("Не задан интервал");
+  elo.bsData = [];
+
+  var startDtArr = elo.toNumberArr(startDtV.split('.')).reverse();
+  var endDtArr = elo.toNumberArr(endDtV.split('.')).reverse();
+
+  var startDt = new Date(startDtArr[0],startDtArr[1]-1,startDtArr[2]);
+  var endDt = new Date(endDtArr[0],endDtArr[1]-1,endDtArr[2]);
+  if (startDt > endDt) throw new Error(WRONG_RANGE_EX);
+  var curDt = startDt;
+
+  while (curDt <= endDt){
+      var y = ''+curDt.getFullYear();
+      var m =  to2d(curDt.getMonth()+1);
+      var d = to2d(curDt.getDate());
+      var key = y + '-' + m + '-' + d;
+      var dd = buData[key];
+      if (dd){
+          dd['dateStr'] = d+'.'+ m;
+          dd['sluzhbi'] = '';
+          if (dd['prazdn'] == undefined) dd['prazdn'] = false;
+
+          var wd = dd['weekDay']
+          if (dd['weekDay'].indexOf('Неделя') == 0){
+              dd['dsc'] = wd +'. ' + dd['dsc'];
+              dd['weekDay'] = 'Воcкресенье';
+              dd['prazdn'] = true;
+          }
+          dd['weekDay'] = WEEK_DAYS_ABBR_MAP[dd['weekDay']];//меняем на краткое обозначения дня недели
+          dd['recid'] = elo.bsData.length;
+          elo.bsData.push(dd);
+          //
+      }
+      curDt = new Date(curDt.getTime()+ DAY_MS);
+  }
+
 }
 
-function sortDateArrFn(a,b){
-    var ada = a['dateArr'];
-    var bda = b['dateArr'];
-    return compareDateArrays(ada,bda);
+function to2d(n){
+   if (n<10) return '0'+n;
+   else return ''+n;
 }
 
-function compareDateArrays(ada,bda){
-    var difY = ada[0] - bda[0];
-    if (difY != 0) return difY;
-    var difM = ada[1] - bda[1];
-    if (difM != 0) return difM;
-    var difD = ada[2] - bda[2];
-    if (difD != 0) return difD;
-    return 0;
-}
 
 });
