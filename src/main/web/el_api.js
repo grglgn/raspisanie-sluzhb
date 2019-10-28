@@ -53,4 +53,4 @@ elo.datepickerConf ={
 	yearSuffix: ""
 };
 
-$.datepicker.setDefaults(elo.datepickerConf);
+//$.datepicker.setDefaults(elo.datepickerConf);

@@ -1,25 +1,24 @@
 $(function (){
+
 $('#startDtInp').w2field('date', {format:'dd.mm.yyyy'});
 $('#endDtInp').w2field('date', {format:'dd.mm.yyyy'});
 $("#processBtn").hide();
 
-//elo.bsData = prepareBuData(buData); //NOTE! Var "buData" must be defined in one of previously included js files
-
-
-
 
 function drawGrid(){
 
-
-  try {
-      prepareBSData(); //здесь заполняется elo.bsData
-  } catch (e){
-     elo.msg(e.message);
-//     elo.msg(JSON.stringify(e));
+  if (elo.bsData && elo.bsData.length > 0 &&
+      !confirm('Ваши изменения расписания будут потеряны. Продолжить?')) {
      return;
   }
 
+  try {
+      prepareBSData(); //здесь заполняется elo.bsData
 
+  } catch (e){
+     elo.msg(e.message);
+     return;
+  }
 
   if (g()) {
       g().destroy();
@@ -29,19 +28,13 @@ function drawGrid(){
           name: 'raspGrid',
           records: elo.bsData,
           columns: [
-              { field: 'dateStr', caption: 'Д', size: '40px' , min:40},
-              { field: 'weekDay', caption: 'ДH', size: '40px', min:40 },
+              { field: 'dateStr', caption: 'Д', size: '55px' , min:55},
+              { field: 'weekDay', caption: 'ДH', size: '45px', min:45 },
 
               { field: 'sluzhbi', caption: 'Службы', size: '40%',attr: "align=left" ,
                 render: function (record, index, col_index) {
                             return constrSluHtml(index);
                         }},
-
-             /* { field: 'prazdn', caption: '', size:'20px',
-                render: function (record, index, col_index) {
-                            return '<input type="checkbox" id="prazdnRecChk'+record.recid+'"/>';
-                        }},*/
-
               { field: 'dsc', caption: 'Описание', size: '45%',attr: "align=left"}
           ],
            onDblClick:function(event){
@@ -51,6 +44,12 @@ function drawGrid(){
 
 
           },
+          /*onSelect: function(event) {
+              var record = this.get(event.recid);
+              //$('#console').html(constrSluHtml(event.recid));
+              ..w2alert(constrSluHtml(event.recid));
+              return true;
+          } ,*/
           onRender: function(event) {
               //elo.msg('ququ');
               setTimeout(function(){
@@ -58,6 +57,15 @@ function drawGrid(){
                  for (var i in da){
                      markRecPrazdn(da[i]);
                  }
+                 /*var scnt = $('.slu-all-cnt .slu-cnt');
+                 scnt.off();
+                 //   $('#console').html(scnt.eq(0).html());
+
+                 scnt.mouseenter( function(){
+                        $('#console').html(this.innerHTML);
+                    } ).mouseleave( function(){
+                         $('#console').html('');
+                    } );*/
               },100);
           }
 
@@ -71,202 +79,6 @@ function drawGrid(){
 
 $("#loadBtn").on("click", drawGrid);
 
-function markRecPrazdn(rec){
-   var el = $('#grid_raspGrid_rec_'+rec.recid);
-   if (rec.prazdn) el.addClass('prazdn');
-   else el.removeClass('prazdn');
-}
-
-function showEditWindow(rec){
-   $('#popup1').w2popup({
-       title: 'Cлужбы в <strong>'+rec['weekDay']+', '+rec['dateStr']+'</strong>',
-       onClose:function(event){
-           $('#addedSluCnt').empty();//todo remove childs
-           $('#sluTime').val("");
-           $('#sluName').val("");
-           $('#sluPrazdnChk').prop('checked',false);
-           $('#editWin_descrBox').removeClass('prazdn');
-           $('#sluAddBtn').off();
-           $('#editWin_applyBtn').off();
-           $('#markPrazdnBox button').off();
-           delete rec.prePrazdn;
-       }
-   });
-   $('#sluAddBtn').on('click', function(event){
-      editWin_addSlu(rec);
-   });
-   $('#editWin_applyBtn').on('click', function(event){
-      editWin_applyChanges(rec);
-   });
-   $('#sluTime').w2field('list', { items: slu_times });
-   $('#sluName').w2field('list', { items: slu_names });
-   $('#editWin_descrBox').html(rec.dsc);
-   if (rec.prazdn){
-       $('#editWin_descrBox').addClass('prazdn');
-       $('#sluPrazdnChk').prop('checked',true);
-   }
-   prepareMarkPrazdnBtn(rec);
-   var existedSlu = elo.bsData[rec.recid].slu;
-   if (existedSlu) rec.addedSlu = [].concat(elo.bsData[rec.recid].slu);
-   else rec.addedSlu = [];
-
-   editWin_redrawSlu(rec);
-}
-
-function prepareMarkPrazdnBtn(rec){
-     var btn = $('#markPrazdnBox button');
-     var makePrazdnMsg = 'Сделать праздничным';
-     var makeNoPrazdnMsg = 'Сделать непраздничным';
-     btn.html((rec.prazdn || rec.prePrazdn)? makeNoPrazdnMsg : makePrazdnMsg);
-     btn.click(function(){
-         if ((rec.prazdn && rec.prePrazdn == undefined) || rec.prePrazdn){
-             rec.prePrazdn = false;
-             $('#editWin_descrBox').removeClass('prazdn');
-             $('#sluPrazdnChk').prop('checked',false);
-             btn.html(makePrazdnMsg);
-         } else {
-            rec.prePrazdn = true;
-            $('#editWin_descrBox').addClass('prazdn');
-            $('#sluPrazdnChk').prop('checked',true);
-            btn.html(makeNoPrazdnMsg);
-         }
-     });
-}
-
-function editWin_applyChanges(rec){
-   //var chAr = rec.addedSlu;
-   var divArr = $('#addedSluCnt div');
-   rec.slu = [];
-   divArr.each(function(ind){
-       //this.id
-       var inputs = $(this).children('input');
-       var newTime = inputs.eq(0).val();
-       var newName = inputs.eq(1).val();
-       var isPra = rec.addedSlu[ind].isPrazdn;
-       //var isPraz =  inputs.eq(3).prop('checked');
-       rec.slu.push({time:newTime, title:newName, isPrazdn:isPra ? true:false});
-   });
-   elo.bsData[rec.recid].slu = Array.from(rec.slu);
-   if (rec.prePrazdn != undefined){
-      rec.prazdn = rec.prePrazdn;
-      elo.bsData[rec.recid].prazdn = rec.prePrazdn;
-   }
-   g().refreshRow(rec.recid);
-   markRecPrazdn(rec);
-   w2popup.close();
-
-}
-
-function editWin_sluDivId(rec,time){
-   return 'adSl_'+rec.recid+'_'+time;
-}
-
-function editWin_redrawSlu(rec){
-
-    $('#addedSluCnt').empty();
-    editWinMsg('');
-    for (var i in rec.addedSlu){
-        var curSlu = rec.addedSlu[i];
-        var divid = editWin_sluDivId(rec,curSlu.time);
-        var timeInp = divid+'_t';
-        var nameInp = divid+'_n';
-        var removeBtn = divid+'_btn';
-
-        $('#addedSluCnt').append(
-           '<div id="'+divid+'"><input type="text" class="sluTime" id="'+timeInp+'"/>'+
-             '<input type="text" id="'+nameInp+'" class="sluName"/><button id="'+removeBtn+'">Удалить</button></div>');
-        if (curSlu.isPrazdn){
-            $('#'+divid).addClass('prazdn');
-        }
-        $('#'+removeBtn).on('click', function(){
-            var ind = i;
-            editWin_removeSlu(rec, this);
-            //$('#'+divid).remove(rec,i);
-        });
-        $('#'+timeInp).val(curSlu.time);
-        $('#'+nameInp).val(curSlu.title);
-    }
-    if (rec.addedSlu.length == 0) editWinMsg('Нет служб');
-    //else editWinMsg('Выбрано служб:'+)
-}
-
-function editWinMsg(s){
-   $('#editWin_msgBox').html(s);
-}
-
-function editWin_addSlu(rec){
-    var sluArr = rec.addedSlu;
-    var timeVal = $('#sluTime').val();
-    var nameVal = $('#sluName').val();
-    var isPra = $('#sluPrazdnChk').prop('checked');
-    if (!timeVal) {
-        editWinMsg('Не выбрано время');
-        return;
-    }
-    if (!nameVal){
-        editWinMsg('Не выбрано название службы');
-        return;
-    }
-    var inserted = false;
-    var newSlu = {time:timeVal, title:nameVal, isPrazdn:isPra};
-
-
-    var resMsg = editWin_insertNewSlu(sluArr, newSlu);
-    if (resMsg){
-        editWinMsg(resMsg);
-    } else {
-        editWin_redrawSlu(rec);
-        $('#sluTime').val('');
-        $('#sluName').val('');
-
-        $('#sluPrazdnChk').prop('checked',rec.prazdn || rec.prePrazdn);
-    }
-
-}
-
-function editWin_removeSlu(rec,btn){
-   var divid = btn.parentElement.id;
-   var t = divid.substring(divid.lastIndexOf('_')+1);
-   var ar = rec.addedSlu;
-   for (var i in ar){
-       if (ar[i].time == t){
-           ar.splice(i,1);
-           break;
-       }
-   }
-   editWin_redrawSlu(rec);
-}
-
-function editWin_insertNewSlu(sluArr, newSlu){
-    for (var i in sluArr){
-        var nextSluTime = parseInt(sluArr[i].time.replace('-',''));
-        var newSluTime = parseInt(newSlu.time.replace('-',''));
-        if (nextSluTime == newSluTime){
-            //throw "";
-            return 'Уже есть служба в это время';
-        }
-        if (nextSluTime > newSluTime){
-           sluArr.splice(i,0, newSlu);
-           return '';
-        }
-    }
-
-    sluArr[sluArr.length] = newSlu;
-    return '';
-
-}
-
-function g(){ return w2ui['raspGrid'];}
-
-function getCurRecord(){
-   var sel = g().getSelection();
-   if (sel.length) {
-       return g().get(sel[0]);
-   } else {
-       return null;
-   }
-}
-
 function constrSluHtml(ind){
 //    var rec = g().get(i);
     var rec = elo.bsData[ind];
@@ -279,7 +91,7 @@ function constrSluHtml(ind){
             b+='<div class="slu-cnt';
             if (sl.isPrazdn) b+=' prazdn';
             else b+=' notprazdn';
-            b+='">';
+            b+='" >';
             b+=w2utils.encodeTags(sl.time + ' ' + sl.title);
             b+='</div>';
         }
@@ -293,17 +105,162 @@ function constrSluHtml(ind){
 
 }
 
+//========================= generate =====================================
+
 $("#processBtn").on("click", function(event){
     //todo
+    gen_showWindow();
 
 });
 
-elo.editSlu = function(ind){
-   var rec = g().get(ind+1);
-   elo.msg('dsc:'+rec.dsc);
+function gen_showWindow(){
+
+var htmlTxt = '<table>\n';
+var plainTxt = '';
+for (var i in elo.bsData){
+    var dd = elo.bsData[i];
+    var rowHtml = shed_day_to_html(dd);
+    if (rowHtml) {
+        htmlTxt += rowHtml +'\n';
+        plainTxt += shed_day_to_text(dd);
+    }
+}
+htmlTxt += '\n</table>';
+var genHtml = htmlTxt;
+var genTextHtml = w2utils.encodeTags(genHtml);
+var genText = plainTxt;
+
+$('#genPopup').w2popup({
+       title: 'Сгенерированное расписание',
+       onClose:function(event){
+           /*$("#genWin_htmlBtn").off();
+           $("#genWin_codeBtn").off();
+           $("#genWin_txtBtn").off();
+           $("#genWin_copyBtn").off();*/
+           //$('#toolbar').w2toolbar().destroy();
+           w2ui['toolbar'].destroy();
+       }
+   });
+
+$('#toolbar').w2toolbar({
+        name: 'toolbar',
+        items: [
+            { type: 'radio', id: 'genWin_htmlBtn', group: '1', text: 'Просмотр',  checked: true ,
+              onClick: function(event){
+                  //this.elChecked = event.item.id;
+                  this.elDisplayedText = genHtml;
+                  $("#genWin_content").html(genHtml);
+              } },
+            { type: 'radio', id: 'genWin_codeBtn', group: '1', text: 'html-код для сайта',
+              onClick: function(event){
+                  //this.elChecked = event.item.id;
+                  this.elDisplayedText = genTextHtml;
+                  $("#genWin_content").html(genTextHtml);
+              } },
+            { type: 'radio', id: 'genWin_txtBtn', group: '1',  text: 'Текст',
+              onClick: function(event){
+                  //this.elChecked = event.item.id;
+                  this.elDisplayedText = genText;
+                  $("#genWin_content").html('<pre>'+genText+'</pre>');
+              } },
+            { type: 'spacer' },
+            /*{ type: 'button', id: 'genWin_copyBtn', text: 'Копировать',
+                onClick: function(event){
+                    alert(this.elDisplayedText);
+                }}*/
+        ],
+        onRender: function(){
+            this.elDisplayedText = genHtml;
+        }
+    });
+
+//$("#genWin_content").html(genHtml);
+//$("#genWin_content").html(genHtml);
+w2ui['toolbar'].click('genWin_htmlBtn');
+
+/*
+$("#genWin_htmlBtn").click(function(){
+   $("#genWin_content").html(genHtml);
+});
+
+$("#genWin_codeBtn").click(function(){
+    $("#genWin_content").html(genTextHtml);
+});
+
+$("#genWin_txtBtn").click(function(){
+    $("#genWin_content").html('<pre>'+genText+'</pre>');
+});
+
+$("#genWin_copyBtn").click(function(){
+});
+*/
+
+//$('genWin_htmlTab').html(genHtml)
+
+/*$('#genWin_htmlTab').html(genHtml);
+$('#genWin_htmlTextTab').html(genTextHtml);
+$('#genWin_textTab').html(genText);
+
+
+$('#genWin_tabs').w2tabs({
+        name: 'genWin_tabs',
+//        active: 'genWin_htmlTab',
+        tabs: [
+            { id: 'genWin_htmlTab', caption: 'Просмотр' },
+            { id: 'genWin_htmlTextTab', caption: 'html-код для сайта' },
+            { id: 'genWin_textTab', caption: 'Текст' },
+        ],
+        onClick: function (event) {
+            var tabind = event.target;
+            //alert(tabind);
+            $('.genTab').hide();
+            $('#' + tabind).show();
+        }
+    });
+$('#genWin_htmlTab').click(); */
+
+
 }
 
 
+function shed_day_to_html (ddata){
+    var sluNum = ddata.slu.length;
+    if (sluNum == 0) return '';
+    var sl = ddata.slu[0];
+    var b = '<tr'+(ddata.prazdn ? ' class="prazdn"':'')+'>\n';
+    b+='<td width="5%"' +(sluNum > 1 ? ' rowspan="'+sluNum+'"':'')+'>';
+    b+=ddata.weekDay;
+    b+='</td>\n<td width="10%"' +(sluNum > 1 ? ' rowspan="'+sluNum+'"':'')+'>'+
+  	      ddata.dateStr +'</td>\n';
+    b+='<td width="7%">'+sl.time+'</td>';
+    b+='<td width="30%">'+sl.title+'</td>\n';
+    var dsc = ddata.dsc;
+    b+='<td width="30%"' +(sluNum > 1 ? ' rowspan="'+sluNum+'"':'')+'>'+
+  	      dsc+'</td>\n';
+    b += '</tr>\n';
+
+    for (var i = 1; i < sluNum; i++){
+        sl = ddata.slu[i];
+  	    b += '<tr'+(sl.isPrazdn ? ' class="prazdn"':'')+'>\n';
+  	    b+='<td>'+sl.time+'</td><td>'+sl.title+'</td>';
+  	    b += '</tr>\n';
+    }
+    return b;
+}
+
+function shed_day_to_text (ddata){
+  var sluNum = ddata.slu.length;
+  if (sluNum == 0) return '';
+  var sl = ddata.slu[0];
+  var b = '\n=======================================\n';
+  b += ddata.weekDay + ', ' + ddata.dateStr+'\n';
+         b+='---------------------------------------\n';
+  for (var i = 0; i < sluNum; i++){
+      sl = ddata.slu[i];
+	  b+= sl.time+' '+sl.title+'\n';
+  }
+  return b;
+}
 //======================= Data handling ===================
 
 var WRONG_RANGE_EX = 'Диапазон дат выбран неправильно';
@@ -334,14 +291,17 @@ function prepareBSData(){
           dd['sluzhbi'] = '';
           if (dd['prazdn'] == undefined) dd['prazdn'] = false;
 
-          var wd = dd['weekDay']
-          if (dd['weekDay'].indexOf('Неделя') == 0){
+
+
+
+          var wd = dd['weekDay'];
+          if (wd && wd.indexOf('Неделя') != -1){
               dd['dsc'] = wd +'. ' + dd['dsc'];
-              dd['weekDay'] = 'Воcкресенье';
-              dd['prazdn'] = true;
           }
-          dd['weekDay'] = WEEK_DAYS_ABBR_MAP[dd['weekDay']];//меняем на краткое обозначения дня недели
+          dd['weekDay'] = WEEK_DAYS_ABBR_ARR[curDt.getDay()];//WEEK_DAYS_ABBR_MAP[dd['weekDay']];//меняем на краткое обозначения дня недели
+          if (curDt.getDay() == 0) dd['prazdn'] = true;
           dd['recid'] = elo.bsData.length;
+          dd['slu'] = [];
           elo.bsData.push(dd);
           //
       }
@@ -350,10 +310,21 @@ function prepareBSData(){
 
 }
 
+
+
+
+});
+
+function g(){ return w2ui['raspGrid'];}
 function to2d(n){
    if (n<10) return '0'+n;
    else return ''+n;
 }
 
+function markRecPrazdn(rec){
+   var el = $('#grid_raspGrid_rec_'+rec.recid);
+   if (rec.prazdn) el.addClass('prazdn');
+   else el.removeClass('prazdn');
 
-});
+
+}
