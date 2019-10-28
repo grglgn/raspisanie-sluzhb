@@ -9,6 +9,7 @@ function showEditWindow(rec){
            $('#editWin_descrBox').removeClass('prazdn');
            $('#sluAddBtn').off();
            $('#editWin_applyBtn').off();
+           $('#editWin_applyForAllBtn').off();
            $('#markPrazdnBox button').off();
            $('#editWin_descrBox').off().show();
            $('#editWin_descrInput').off().hide();
@@ -20,6 +21,10 @@ function showEditWindow(rec){
    });
    $('#editWin_applyBtn').on('click', function(event){
       editWin_applyChanges(rec);
+   });
+   $('#editWin_applyForAllBtn').html('Сохранить для всех "'+rec.weekDay+'" периода');
+   $('#editWin_applyForAllBtn').on('click', function(event){
+      editWin_applyChanges(rec,true);
    });
    $('#sluTime').w2field('list', { items: slu_times });
    $('#sluName').w2field('list', { items: slu_names });
@@ -66,7 +71,7 @@ function prepareMarkPrazdnBtn(rec){
      });
 }
 
-function editWin_applyChanges(rec){
+function editWin_applyChanges(rec, forAll){
    //var chAr = rec.addedSlu;
    var divArr = $('#addedSluCnt div');
    rec.slu = [];
@@ -90,8 +95,26 @@ function editWin_applyChanges(rec){
    g().refreshRow(rec.recid);
    markRecPrazdn(rec);
    w2popup.close();
-
+   if (forAll) _editWin_copySluChanges(rec);
 }
+
+function _editWin_copySluChanges(recOrigin){
+
+   for (var i in elo.bsData){
+       var dd = elo.bsData[i];
+       if (dd.weekDay != recOrigin.weekDay) continue;
+       if (dd.slu && dd.slu.length) continue;
+       var rec = g().records[dd.recid];
+       dd.slu = Array.from(recOrigin.slu);
+       rec.slu = Array.from(recOrigin.slu);
+       //dd.dsc = rec.dsc = recOrigin.dsc;
+       //dd.prazdn = rec.prazdn = recOrigin.prazdn;
+       g().refreshRow(rec.recid);
+   }
+}
+
+
+
 
 function editWin_sluDivId(rec,time){
    return 'adSl_'+rec.recid+'_'+time;
