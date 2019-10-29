@@ -1,24 +1,32 @@
 $(function (){
 
+var curDate = new Date();
+
 $('#startDtInp').w2field('date', {format:'dd.mm.yyyy'});
 $('#endDtInp').w2field('date', {format:'dd.mm.yyyy'});
 $("#processBtn").hide();
 
 
-function drawGrid(){
+$('#startDtInp').val(fmtDt_xx_xx_xxxx(curDate));
 
-  if (elo.bsData && elo.bsData.length > 0 &&
-      !confirm('Ваши изменения расписания будут потеряны. Продолжить?')) {
-     return;
-  }
+$('#endDtInp').val(fmtDt_xx_xx_xxxx(
+              new Date(curDate.getTime()+(30*24*60*60*1000))));
+
+
+function drawGrid(useCached){
 
   try {
-      prepareBSData(); //здесь заполняется elo.bsData
+      if (!useCached) {
+          prepareBSData(); //здесь заполняется elo.bsData
+      }
 
   } catch (e){
      elo.msg(e.message);
      return;
   }
+
+  $("#loadJsonBtn").html(originModelBtnText);
+  isModelDisplayed = false;
 
   if (g()) {
       g().destroy();
@@ -77,7 +85,44 @@ function drawGrid(){
 
 //$("input[id=^'isPrazdnRecChk']").change(function(){
 
-$("#loadBtn").on("click", drawGrid);
+$("#loadBtn").on("click", function(){
+     confirmLossDataAndDo(drawGrid);
+});
+
+var isModelDisplayed = false;
+var originModelBtnText = $("#loadJsonBtn").html();
+
+$("#loadJsonBtn").on("click", function(){
+     //confirmLossDataAndDo(function(){});
+     isModelDisplayed = !isModelDisplayed;
+     if (isModelDisplayed){
+
+       $("#raspGrid").html("<textarea></textarea>");
+       $("#raspGrid textarea").val(JSON.stringify(elo.bsData));
+       $("#loadJsonBtn").html('Таблица');
+
+     } else {
+
+       try{
+         elo.bsData = JSON.parse($("#raspGrid textarea").val());
+         drawGrid(true);
+       } catch (e){
+           isModelDisplayed = !isModelDisplayed;//назад...
+           elo.msg('Возникла ошибка при разборе модели:'+e);
+       }
+     }
+});
+
+
+function  confirmLossDataAndDo(fn){
+     if (elo.bsData && elo.bsData.length){
+         w2confirm({msg:'Ваши изменения расписания будут потеряны. Продолжить?',
+                    title:'Подтверждение',
+                    btn_yes:{text:'Да'}, btn_no:{text:'Нет'}})
+            .yes(fn);
+     } else fn.apply();
+
+}
 
 function constrSluHtml(ind){
 //    var rec = g().get(i);
@@ -129,6 +174,7 @@ htmlTxt += '\n</table>';
 var genHtml = htmlTxt;
 var genTextHtml = w2utils.encodeTags(genHtml);
 var genText = plainTxt;
+var genJson = w2utils.encodeTags(JSON.stringify(elo.bsData));
 
 $('#genPopup').w2popup({
        title: 'Сгенерированное расписание',
@@ -162,8 +208,14 @@ $('#toolbar').w2toolbar({
                   //this.elChecked = event.item.id;
                   this.elDisplayedText = genText;
                   $("#genWin_content").html('<pre>'+genText+'</pre>');
-              } },
-            { type: 'spacer' },
+              } }/*,
+              { type: 'radio', id: 'genWin_jsonBtn', group: '1',  text: 'Модель',
+                            onClick: function(event){
+                                //this.elChecked = event.item.id;
+                                this.elDisplayedText = genJson;
+                                $("#genWin_content").html(genJson);
+                            } }*/
+            //{ type: 'spacer' },
             /*{ type: 'button', id: 'genWin_copyBtn', text: 'Копировать',
                 onClick: function(event){
                     alert(this.elDisplayedText);
@@ -177,49 +229,6 @@ $('#toolbar').w2toolbar({
 //$("#genWin_content").html(genHtml);
 //$("#genWin_content").html(genHtml);
 w2ui['toolbar'].click('genWin_htmlBtn');
-
-/*
-$("#genWin_htmlBtn").click(function(){
-   $("#genWin_content").html(genHtml);
-});
-
-$("#genWin_codeBtn").click(function(){
-    $("#genWin_content").html(genTextHtml);
-});
-
-$("#genWin_txtBtn").click(function(){
-    $("#genWin_content").html('<pre>'+genText+'</pre>');
-});
-
-$("#genWin_copyBtn").click(function(){
-});
-*/
-
-//$('genWin_htmlTab').html(genHtml)
-
-/*$('#genWin_htmlTab').html(genHtml);
-$('#genWin_htmlTextTab').html(genTextHtml);
-$('#genWin_textTab').html(genText);
-
-
-$('#genWin_tabs').w2tabs({
-        name: 'genWin_tabs',
-//        active: 'genWin_htmlTab',
-        tabs: [
-            { id: 'genWin_htmlTab', caption: 'Просмотр' },
-            { id: 'genWin_htmlTextTab', caption: 'html-код для сайта' },
-            { id: 'genWin_textTab', caption: 'Текст' },
-        ],
-        onClick: function (event) {
-            var tabind = event.target;
-            //alert(tabind);
-            $('.genTab').hide();
-            $('#' + tabind).show();
-        }
-    });
-$('#genWin_htmlTab').click(); */
-
-
 }
 
 
@@ -316,6 +325,15 @@ function prepareBSData(){
 });
 
 function g(){ return w2ui['raspGrid'];}
+
+function fmtDt_xx_xx_xxxx(dt){
+   var ar = ['','',''];
+   ar[2] = dt.getFullYear();
+   ar[1] =  to2d(dt.getMonth()+1);
+   ar[0] = to2d(dt.getDate());
+   return ar.join('.');
+}
+
 function to2d(n){
    if (n<10) return '0'+n;
    else return ''+n;

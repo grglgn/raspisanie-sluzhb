@@ -43,7 +43,7 @@
   border:1px dashed white;
 }
 
-h2.rasp-header{color:#fafafa; font-size:20px;}
+h2.rasp-header{color:#fafafa; font-size:20px; margin-top:0px;}
 #startDtInp, #endDtInp {font-size:18px; }
 
 .slu-cnt {margin:3px; text-align:left; vertical-align:middle; font-size:13px;}
@@ -66,14 +66,18 @@ h2.rasp-header{color:#fafafa; font-size:20px;}
 #editWin_descrInput {width:100%; display:none; margin-bottom:5px;}
 #sluAddBtn {margin-left:10px}
 div.tableCont{width: 100%;  text-align:center; background-color: #dddddd;}
-#raspGrid{width:90%; height: 350px; margin: 0 auto; margin-bottom:20px;}
+#raspGrid{width:90%; height: 350px; margin: 0 auto; margin-bottom:20px;
+          background-color:white;}
 #raspGrid td.w2ui-grid-data {font-size:14px !important; padding:5px 3px !important;}
+#raspGrid textarea {width:100%; height:100%}
 
 
 #markPrazdnBox{margin-bottom:10px;}
-#loadBtn{height:40px; margin-top:15px;  margin-bottom:15px; font-size:14px;}
+#loadBtn{height:40px; margin-top:5px;  margin-bottom:15px; font-size:14px;}
+#loadJsonBtn{height:40px; margin-top:0px;  margin-bottom:15px; font-size:14px;
+             width:100px;}
 #processBtn{height:40px; margin-top:0px;  margin-bottom:30px; font-size:14px;}
-.elomsg{font-size:18px;}
+.elomsg{font-size:18px; width:100%; line-height:150%}
 
 #popup1 {display: none; width: 90%; height: 400px; overflow: hidden;}
 #console {margin: 0 auto; width: 90%; height: 40px; overflow: auto; background-color: #dddddd;
@@ -100,3 +104,11 @@ vertical-align:middle; }
  border-collapse: collapse;
  padding:3px;
  }
+ #genWin_content table td:nth-child(1),
+ #genWin_content table td:nth-child(2),
+ #genWin_content table td:nth-child(3){
+     text-align:center;
+ }
+  #genWin_content table td:nth-child(4){
+      padding-left:6px;
+  }

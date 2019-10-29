@@ -36,6 +36,7 @@ function showEditWindow(rec){
    $('#editWin_descrBox').dblclick(function(){
         $('#editWin_descrInput').show();
         $('#editWin_descrInput').val(rec.dsc);
+        $('#editWin_descrInput').focus();
         $(this).hide();
    });
    $('#editWin_descrInput').focusout(function(){
@@ -107,8 +108,6 @@ function _editWin_copySluChanges(recOrigin){
        var rec = g().records[dd.recid];
        dd.slu = Array.from(recOrigin.slu);
        rec.slu = Array.from(recOrigin.slu);
-       //dd.dsc = rec.dsc = recOrigin.dsc;
-       //dd.prazdn = rec.prazdn = recOrigin.prazdn;
        g().refreshRow(rec.recid);
    }
 }
