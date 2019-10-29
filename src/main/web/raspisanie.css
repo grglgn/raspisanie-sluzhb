@@ -69,7 +69,7 @@ div.tableCont{width: 100%;  text-align:center; background-color: #dddddd;}
 #raspGrid{width:90%; height: 350px; margin: 0 auto; margin-bottom:20px;
           background-color:white;}
 #raspGrid td.w2ui-grid-data {font-size:14px !important; padding:5px 3px !important;}
-#raspGrid textarea {width:100%; height:100%}
+#raspGrid textarea {width:100%; height:100%;  border: 1px solid brown;}
 
 
 #markPrazdnBox{margin-bottom:10px;}

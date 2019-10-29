@@ -96,7 +96,6 @@ $("#loadJsonBtn").on("click", function(){
      //confirmLossDataAndDo(function(){});
      isModelDisplayed = !isModelDisplayed;
      if (isModelDisplayed){
-
        $("#raspGrid").html("<textarea></textarea>");
        $("#raspGrid textarea").val(JSON.stringify(elo.bsData));
        $("#loadJsonBtn").html('Таблица');
@@ -104,10 +103,17 @@ $("#loadJsonBtn").on("click", function(){
      } else {
 
        try{
-         elo.bsData = JSON.parse($("#raspGrid textarea").val());
-         drawGrid(true);
+         elo.confirm(
+             'Вы уверены, что хотите изменить модель ? Нажмите "Нет", чтобы оставить все, как было'
+             ,function(){
+                 elo.bsData = JSON.parse($("#raspGrid textarea").val());
+                 drawGrid(true);
+             },
+             function(){
+                 drawGrid(true);
+             });
        } catch (e){
-           isModelDisplayed = !isModelDisplayed;//назад...
+           isModelDisplayed = true;//остаемся в режиме ручного ред. модели...
            elo.msg('Возникла ошибка при разборе модели:'+e);
        }
      }
@@ -116,13 +122,10 @@ $("#loadJsonBtn").on("click", function(){
 
 function  confirmLossDataAndDo(fn){
      if (elo.bsData && elo.bsData.length){
-         w2confirm({msg:'Ваши изменения расписания будут потеряны. Продолжить?',
-                    title:'Подтверждение',
-                    btn_yes:{text:'Да'}, btn_no:{text:'Нет'}})
-            .yes(fn);
+         elo.confirm('Ваши изменения расписания будут потеряны. Продолжить?',fn);
      } else fn.apply();
-
 }
+
 
 function constrSluHtml(ind){
 //    var rec = g().get(i);

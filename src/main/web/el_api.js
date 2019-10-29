@@ -7,7 +7,7 @@ elo.parseDate = function(str, mask){
     } else {
         return new Date(str);
     }
-}
+};
 
 elo.msg = function(str){
       w2popup.open({
@@ -19,7 +19,14 @@ elo.msg = function(str){
 elo.toNumberArr = function(arr){
     for (var i in arr) arr[i] = parseInt(arr[i]);
     return arr;
-}
+};
+
+elo.confirm = function(msgStr, fnYes, fnNo){
+    w2confirm({msg:msgStr,
+               title:'Подтверждение',
+               btn_yes:{text:'Да'}, btn_no:{text:'Нет'}})
+            .yes(fnYes).no(fnNo);
+};
 
 
 
@@ -52,5 +59,7 @@ elo.datepickerConf ={
 	showMonthAfterYear: false,
 	yearSuffix: ""
 };
+
+
 
 //$.datepicker.setDefaults(elo.datepickerConf);
