@@ -85,7 +85,7 @@ function editWin_applyChanges(rec, forAll){
        //var isPraz =  inputs.eq(3).prop('checked');
        rec.slu.push({time:newTime, title:newName, isPrazdn:isPra ? true:false});
    });
-   elo.bsData[rec.recid].slu = Array.from(rec.slu);
+   elo.bsData[rec.recid].slu = [].concat(rec.slu);
    if (rec.prePrazdn != undefined){
       rec.prazdn = rec.prePrazdn;
       elo.bsData[rec.recid].prazdn = rec.prePrazdn;
@@ -106,8 +106,8 @@ function _editWin_copySluChanges(recOrigin){
        if (dd.weekDay != recOrigin.weekDay) continue;
        if (dd.slu && dd.slu.length) continue;
        var rec = g().records[dd.recid];
-       dd.slu = Array.from(recOrigin.slu);
-       rec.slu = Array.from(recOrigin.slu);
+       dd.slu = [].concat(recOrigin.slu);
+       rec.slu = [].concat(recOrigin.slu);
        g().refreshRow(rec.recid);
    }
 }

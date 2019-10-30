@@ -36,8 +36,8 @@ function drawGrid(useCached){
           name: 'raspGrid',
           records: elo.bsData,
           columns: [
-              { field: 'dateStr', caption: 'Д', size: '55px' , min:55},
-              { field: 'weekDay', caption: 'ДH', size: '45px', min:45 },
+              { field: 'dateStr', caption: 'Д', size: '10%' , min:55},
+              { field: 'weekDay', caption: 'ДH', size: '5%', min:45 },
 
               { field: 'sluzhbi', caption: 'Службы', size: '40%',attr: "align=left" ,
                 render: function (record, index, col_index) {
@@ -59,25 +59,13 @@ function drawGrid(useCached){
               return true;
           } ,*/
           onRender: function(event) {
-              //elo.msg('ququ');
               setTimeout(function(){
                  var da = elo.bsData;
                  for (var i in da){
                      markRecPrazdn(da[i]);
                  }
-                 /*var scnt = $('.slu-all-cnt .slu-cnt');
-                 scnt.off();
-                 //   $('#console').html(scnt.eq(0).html());
-
-                 scnt.mouseenter( function(){
-                        $('#console').html(this.innerHTML);
-                    } ).mouseleave( function(){
-                         $('#console').html('');
-                    } );*/
               },100);
           }
-
-
       });
       $("#processBtn").show();
 
@@ -322,11 +310,10 @@ function prepareBSData(){
   }
 
 }
-
-
-
-
+w2alert(navigator.userAgent);
 });
+
+
 
 function g(){ return w2ui['raspGrid'];}
 

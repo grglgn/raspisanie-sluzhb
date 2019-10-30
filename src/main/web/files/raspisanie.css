@@ -3,26 +3,7 @@
  border-collapse: collapse;
  }
 
- #settTable, #settTable td{
- border:solid black 1px;
- border-collapse: collapse;
- }
- #settTable{
- margin-top:20px;
- }
- #settTable td{
- width:80px;
- height:80px;
- text-align:center;
- }
 
- #settTable td.header{
- background-color:rgb(220,220,220);
- }
-
- .outOfRange{
-   background-color:grey;
- }
  .prazdn, .prazdn input, .prazdn td{
     color:red !important;
  }
@@ -32,12 +13,11 @@
  #htmlTA, #txtTA, #originTA{width:900px; height:300px;}
  #txtTA{margin-left:100px;}
  #descrTA{width:900px; height:300px;}
- body {text-align:center !important; background-color:rgb(173, 218, 240);
-
-       }
+ body {
+     text-align:center !important;
+     background-color:rgb(173, 218, 240);
+ }
 .bodyCnt{
-  text-align:center;
-  margin: 0 auto;
   background-color:rgb(67, 120, 176);
   margin:10px; padding:15px;
   border:1px dashed white;
@@ -65,7 +45,6 @@ h2.rasp-header{color:#fafafa; font-size:20px; margin-top:0px;}
                    white-space: normal; font-size:14px; cursor:pointer;}
 #editWin_descrInput {width:100%; display:none; margin-bottom:5px;}
 #sluAddBtn {margin-left:10px}
-div.tableCont{width: 100%;  text-align:center; background-color: #dddddd;}
 #raspGrid{width:90%; height: 350px; margin: 0 auto; margin-bottom:20px;
           background-color:white;}
 #raspGrid td.w2ui-grid-data {font-size:14px !important; padding:5px 3px !important;}
