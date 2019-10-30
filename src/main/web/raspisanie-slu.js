@@ -218,11 +218,12 @@ $('#toolbar').w2toolbar({
                                 this.elDisplayedText = genJson;
                                 $("#genWin_content").html(genJson);
                             } }*/
-            //{ type: 'spacer' },
-            /*{ type: 'button', id: 'genWin_copyBtn', text: 'Копировать',
+            ,{ type: 'spacer' },
+            { type: 'button', id: 'genWin_copyBtn', text: 'Копировать',
                 onClick: function(event){
-                    alert(this.elDisplayedText);
-                }}*/
+                    //alert(this.elDisplayedText);
+                    elo.copyContent($("#genWin_content").get(0));
+                }}
         ],
         onRender: function(){
             this.elDisplayedText = genHtml;

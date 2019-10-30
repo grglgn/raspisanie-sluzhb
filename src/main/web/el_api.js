@@ -28,6 +28,37 @@ elo.confirm = function(msgStr, fnYes, fnNo){
             .yes(fnYes).no(fnNo);
 };
 
+elo.select = function(el){
+     var target = el;
+     var rng, sel;
+     if (document.createRange) {
+       rng = document.createRange();
+       rng.selectNode(target)
+       sel = window.getSelection();
+       sel.removeAllRanges();
+       sel.addRange(rng);
+     } else {
+       var rng = document.body.createTextRange();
+       rng.moveToElementText(target);
+       rng.select();
+     }
+
+ };
+
+ var elo__copyErrMsg = "Не удалось скопировать в буфер обмена. Скопируйте с помощью мыши или клавиш 'ctrl-c'";
+
+ elo.copyContent = function(el){
+     elo.select(el);
+     try{
+         var res = document.execCommand("copy");
+         if (!res) throw new Error();
+         else {
+             w2alert('Скопировано в буфер');
+         }
+     }catch(e){
+         elo.w2alert(elo__copyErrMsg);
+     }
+ };
 
 
 
