@@ -287,30 +287,28 @@ function prepareBSData(){
       var d = to2d(curDt.getDate());
       var key = y + '-' + m + '-' + d;
       var dd = buData[key];
-      if (dd){
-          dd['dateStr'] = d+'.'+ m;
-          dd['sluzhbi'] = '';
-          if (dd['prazdn'] == undefined) dd['prazdn'] = false;
-
-
-
-
-          var wd = dd['weekDay'];
-          if (wd && wd.indexOf('Неделя') != -1){
-              dd['dsc'] = wd +'. ' + dd['dsc'];
-          }
-          dd['weekDay'] = WEEK_DAYS_ABBR_ARR[curDt.getDay()];//WEEK_DAYS_ABBR_MAP[dd['weekDay']];//меняем на краткое обозначения дня недели
-          if (curDt.getDay() == 0) dd['prazdn'] = true;
-          dd['recid'] = elo.bsData.length;
-          dd['slu'] = [];
-          elo.bsData.push(dd);
-          //
+      if (!dd){
+          dd = [];
       }
+
+      dd['sluzhbi'] = '';
+      dd['dateStr'] = d+'.'+ m;
+      if (dd['prazdn'] == undefined) dd['prazdn'] = false;
+      var wd = dd['weekDay'];
+      if (wd && wd.indexOf('Неделя') != -1){
+          dd['dsc'] = wd +'. ' + dd['dsc'];
+      }
+      dd['weekDay'] = WEEK_DAYS_ABBR_ARR[curDt.getDay()];//WEEK_DAYS_ABBR_MAP[dd['weekDay']];//меняем на краткое обозначения дня недели
+      if (curDt.getDay() == 0) dd['prazdn'] = true;
+      dd['recid'] = elo.bsData.length;
+      dd['slu'] = [];
+      elo.bsData.push(dd);
+
       curDt = new Date(curDt.getTime()+ DAY_MS);
   }
 
 }
-w2alert(navigator.userAgent);
+//w2alert(navigator.userAgent);
 });
 
 
