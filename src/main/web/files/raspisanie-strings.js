@@ -26,6 +26,8 @@ var slu_names = [
 'Крещение',
 'Венчание'];
 
+elo.str['no_descr'] = 'Нет описания';
+
 
 /*var slu_names_arr = [];
 var slu_names_map = {};

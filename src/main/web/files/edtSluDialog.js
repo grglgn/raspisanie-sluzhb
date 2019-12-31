@@ -1,10 +1,22 @@
 function showEditWindow(rec){
+
+   function getDescrTxt(recData){
+       var html = (recData && recData.dsc) ?
+           recData.dsc :
+           '<span>'+w2utils.encodeTags(elo.str['no_descr'])+'</span>';
+       $('#editWin_descrBox').html(html);
+   }
+
+   var recData = elo.bsData[rec.recid];
+
    $('#popup1').w2popup({
        title: 'Cлужбы в <strong>'+rec['weekDay']+', '+rec['dateStr']+'</strong>',
        onClose:function(event){
            $('#addedSluCnt').empty();//todo remove childs
            $('#sluTime').val("");
            $('#sluName').val("");
+           $('#editWin_descrInput').val('');
+           //$('#editWin_descrBox').html('');
            $('#sluPrazdnChk').prop('checked',false);
            $('#editWin_descrBox').removeClass('prazdn');
            $('#sluAddBtn').off();
@@ -28,7 +40,7 @@ function showEditWindow(rec){
    });
    $('#sluTime').w2field('list', { items: slu_times });
    $('#sluName').w2field('list', { items: slu_names });
-   $('#editWin_descrBox').html(rec.dsc);
+   $('#editWin_descrBox').html(getDescrTxt(rec.dsc));
    if (rec.prazdn){
        $('#editWin_descrBox').addClass('prazdn');
        $('#sluPrazdnChk').prop('checked',true);

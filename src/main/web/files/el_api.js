@@ -1,4 +1,6 @@
-var elo = {};
+var elo = {
+    str:{}
+};
 
 elo.parseDate = function(str, mask){
     if (mask == "dd-mm-yyyy"){

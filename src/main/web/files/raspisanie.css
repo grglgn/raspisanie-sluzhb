@@ -40,9 +40,21 @@ h2.rasp-header{color:#fafafa; font-size:20px; margin-top:0px;}
 #addedSluCnt div input.sluName{width:65%}
 #editWin_msgBox {margin-top:5px;margin-bottom:5px; padding:3px; height:25px;
                  border: 1px solid lightgrey; color: brown;}
-#editWin_descrBox {margin-bottom:5px; padding:3px; background-color: #dddddd; border: 1px solid lightgrey;
+#editWin_descrBox {margin-bottom:5px;
+                   padding:3px;
+                   background-color: #dddddd;
+                   border: 1px solid lightgrey;
                    width:100%;
-                   white-space: normal; font-size:14px; cursor:pointer;}
+                   height: 20px;
+                   white-space: normal;
+                   font-size:14px;
+                   cursor:pointer;
+                   vertical-align:middle;}
+
+#editWin_descrBox span {
+   color: #999999;
+   vertical-align:middle;
+}
 #editWin_descrInput {width:100%; display:none; margin-bottom:5px;}
 #sluAddBtn {margin-left:10px}
 #raspGrid{width:90%; height: 350px; margin: 0 auto; margin-bottom:20px;
