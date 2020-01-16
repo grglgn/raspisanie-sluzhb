@@ -1,11 +1,13 @@
 function showEditWindow(rec){
 
+/*
    function getDescrTxt(recData){
        var html = (recData && recData.dsc) ?
            recData.dsc :
            '<span>'+w2utils.encodeTags(elo.str['no_descr'])+'</span>';
        $('#editWin_descrBox').html(html);
    }
+*/
 
    var recData = elo.bsData[rec.recid];
 
@@ -18,13 +20,13 @@ function showEditWindow(rec){
            $('#editWin_descrInput').val('');
            //$('#editWin_descrBox').html('');
            $('#sluPrazdnChk').prop('checked',false);
-           $('#editWin_descrBox').removeClass('prazdn');
+           //$('#editWin_descrBox').removeClass('prazdn');
            $('#sluAddBtn').off();
            $('#editWin_applyBtn').off();
            $('#editWin_applyForAllBtn').off();
            $('#markPrazdnBox button').off();
-           $('#editWin_descrBox').off().show();
-           $('#editWin_descrInput').off().hide();
+           //$('#editWin_descrBox').off().show();
+           //$('#editWin_descrInput').off().hide();
            delete rec.prePrazdn;
        }
    });
@@ -40,12 +42,17 @@ function showEditWindow(rec){
    });
    $('#sluTime').w2field('list', { items: slu_times });
    $('#sluName').w2field('list', { items: slu_names });
-   $('#editWin_descrBox').html(getDescrTxt(rec.dsc));
+   //$('#editWin_descrBox').html(getDescrTxt(rec.dsc));
+   $('#editWin_descrInput').val(rec.dsc);
    if (rec.prazdn){
-       $('#editWin_descrBox').addClass('prazdn');
+       //$('#editWin_descrBox').addClass('prazdn');
+       $('#editWin_descrInput').addClass('prazdn');
        $('#sluPrazdnChk').prop('checked',true);
+   } else {
+       $('#editWin_descrInput').removeClass('prazdn');
+       $('#sluPrazdnChk').prop('checked',false);
    }
-   $('#editWin_descrBox').dblclick(function(){
+   /*$('#editWin_descrBox').dblclick(function(){
         $('#editWin_descrInput').show();
         $('#editWin_descrInput').val(rec.dsc);
         $('#editWin_descrInput').focus();
@@ -55,7 +62,7 @@ function showEditWindow(rec){
         $('#editWin_descrBox').html($(this).val());
         $('#editWin_descrBox').show();
         $(this).hide();
-   });
+   });*/
    prepareMarkPrazdnBtn(rec);
    var existedSlu = elo.bsData[rec.recid].slu;
    if (existedSlu) rec.addedSlu = [].concat(elo.bsData[rec.recid].slu);
@@ -72,12 +79,14 @@ function prepareMarkPrazdnBtn(rec){
      btn.click(function(){
          if ((rec.prazdn && rec.prePrazdn == undefined) || rec.prePrazdn){
              rec.prePrazdn = false;
-             $('#editWin_descrBox').removeClass('prazdn');
+//             $('#editWin_descrBox').removeClass('prazdn');
+             $('#editWin_descrInput').removeClass('prazdn');
              $('#sluPrazdnChk').prop('checked',false);
              btn.html(makePrazdnMsg);
          } else {
             rec.prePrazdn = true;
-            $('#editWin_descrBox').addClass('prazdn');
+//            $('#editWin_descrBox').addClass('prazdn');
+            $('#editWin_descrInput').addClass('prazdn');
             $('#sluPrazdnChk').prop('checked',true);
             btn.html(makeNoPrazdnMsg);
          }
@@ -102,7 +111,8 @@ function editWin_applyChanges(rec, forAll){
       rec.prazdn = rec.prePrazdn;
       elo.bsData[rec.recid].prazdn = rec.prePrazdn;
    }
-   rec.dsc = $('#editWin_descrBox').html();
+//   rec.dsc = $('#editWin_descrBox').html();
+   rec.dsc = $('#editWin_descrInput').val();
    elo.bsData[rec.recid].dsc = rec.dsc;
 
    g().refreshRow(rec.recid);
@@ -144,7 +154,7 @@ function editWin_redrawSlu(rec){
 
         $('#addedSluCnt').append(
            '<div id="'+divid+'"><input type="text" class="sluTime" id="'+timeInp+'"/>'+
-             '<input type="text" id="'+nameInp+'" class="sluName"/><button id="'+removeBtn+'">Удалить</button></div>');
+             '<input type="text" id="'+nameInp+'" class="sluName"/><button id="'+removeBtn+'" class="w2ui-btn">Удалить</button></div>');
         if (curSlu.isPrazdn){
             $('#'+divid).addClass('prazdn');
         }
@@ -156,12 +166,14 @@ function editWin_redrawSlu(rec){
         $('#'+timeInp).val(curSlu.time);
         $('#'+nameInp).val(curSlu.title);
     }
-    if (rec.addedSlu.length == 0) editWinMsg('Нет служб');
+    if (rec.addedSlu.length == 0) $('#addedSluCnt').html('Нет служб');
     //else editWinMsg('Выбрано служб:'+)
 }
 
 function editWinMsg(s){
-   $('#editWin_msgBox').html(s);
+   //$('#editWin_msgBox').html(s);
+   if (!s) return;
+   w2alert(s);
 }
 
 function editWin_addSlu(rec){

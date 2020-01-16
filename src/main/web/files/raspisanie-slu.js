@@ -43,7 +43,11 @@ function drawGrid(useCached){
                 render: function (record, index, col_index) {
                             return constrSluHtml(index);
                         }},
-              { field: 'dsc', caption: 'Описание', size: '45%',attr: "align=left"}
+              { field: 'dsc', caption: 'Описание', size: '40%',attr: "align=left"},
+              { field: 'dsc', caption: '...', size: '5%',attr: "align=left",
+                render: function (record, index, col_index) {
+                            return constrBuBtn(index);
+                        }}
           ],
            onDblClick:function(event){
               var record = this.get(event.recid);
@@ -139,6 +143,13 @@ function constrSluHtml(ind){
     b+='</div>';
     return b;
 
+}
+
+function constrBuBtn(ind){
+    var rec = elo.bsData[ind];
+    var b='<a href="http://www.patriarchia.ru/bu/'+rec['buDate']+
+          '/" class="buLink" target="_newwin">БУ</a>';
+    return b;
 }
 
 //========================= generate =====================================
@@ -290,7 +301,7 @@ function prepareBSData(){
       if (!dd){
           dd = [];
       }
-
+      dd['buDate'] = key;
       dd['sluzhbi'] = '';
       dd['dateStr'] = d+'.'+ m;
       if (dd['prazdn'] == undefined) dd['prazdn'] = false;
@@ -309,6 +320,7 @@ function prepareBSData(){
 
 }
 //w2alert(navigator.userAgent);
+  $("#loadBtn").click();
 });
 
 

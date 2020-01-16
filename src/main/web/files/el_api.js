@@ -58,7 +58,7 @@ elo.select = function(el){
              w2alert('Скопировано в буфер');
          }
      }catch(e){
-         elo.w2alert(elo__copyErrMsg);
+         w2alert(elo__copyErrMsg);
      }
  };
 
