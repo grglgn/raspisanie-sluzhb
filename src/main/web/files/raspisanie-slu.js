@@ -36,6 +36,11 @@ function drawGrid(useCached){
           name: 'raspGrid',
           records: elo.bsData,
           columns: [
+              { field: 'dsc', caption: '...', size: '5%',attr: "align=left",
+                render: function (record, index, col_index) {
+                            return constrBuBtn(index);
+                        }},
+
               { field: 'dateStr', caption: 'Д', size: '10%' , min:55},
               { field: 'weekDay', caption: 'ДH', size: '5%', min:45 },
 
@@ -43,11 +48,7 @@ function drawGrid(useCached){
                 render: function (record, index, col_index) {
                             return constrSluHtml(index);
                         }},
-              { field: 'dsc', caption: 'Описание', size: '40%',attr: "align=left"},
-              { field: 'dsc', caption: '...', size: '5%',attr: "align=left",
-                render: function (record, index, col_index) {
-                            return constrBuBtn(index);
-                        }}
+              { field: 'dsc', caption: 'Описание', size: '40%',attr: "align=left"}
           ],
            onDblClick:function(event){
               var record = this.get(event.recid);
