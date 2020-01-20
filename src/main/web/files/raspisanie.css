@@ -128,9 +128,16 @@ vertical-align:middle; }
      text-decoration:none;
      color:white;
      font-family:Verdana;
-     padding:1px;
+     padding:3px;
      background-color:rgb(67, 120, 176);
   }
+
+  .editSluBtn{
+       padding:3px;
+       cursor:pointer;
+       height:20px;
+  }
+
   .w2ui-grid .w2ui-grid-body table .w2ui-head,
   .w2ui-popup .w2ui-popup-title,
   .w2ui-popup .w2ui-popup-buttons {
