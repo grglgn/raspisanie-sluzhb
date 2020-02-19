@@ -36,7 +36,7 @@ function drawGrid(useCached){
           name: 'raspGrid',
           records: elo.bsData,
           columns: [
-              { field: 'dsc', caption: '...', size: '5%',attr: "align=left",
+              { field: 'dsc', caption: '...', size: '40px',attr: "align=left",
                 render: function (record, index, col_index) {
                             return constrBuBtn(index);
                         }},
@@ -44,19 +44,24 @@ function drawGrid(useCached){
               { field: 'dateStr', caption: 'Д', size: '10%' , min:55},
               { field: 'weekDay', caption: 'ДH', size: '5%', min:45 },
 
-              { field: 'sluzhbi', caption: 'Службы', size: '40%',attr: "align=left" ,
+              { field: 'weekDay', caption: '...', size: '35px',attr: "align=left",
+                render: function (record, index, col_index) {
+                            return constrEditSluBtn(index);
+                        }},
+
+              { field: 'sluzhbi', caption: 'Службы', size: '36%',attr: "align=left" ,
                 render: function (record, index, col_index) {
                             return constrSluHtml(index);
                         }},
               { field: 'dsc', caption: 'Описание', size: '40%',attr: "align=left"}
           ],
-           onDblClick:function(event){
+           /*onDblClick:function(event){
               var record = this.get(event.recid);
               //elo.msg('event.column:'+event.column+'  '+w2utils.decodeTags(record.dsc));
               showEditWindow(record);
 
 
-          },
+          },*/
           /*onSelect: function(event) {
               var record = this.get(event.recid);
               //$('#console').html(constrSluHtml(event.recid));
@@ -150,6 +155,12 @@ function constrBuBtn(ind){
     var rec = elo.bsData[ind];
     var b='<a href="http://www.patriarchia.ru/bu/'+rec['buDate']+
           '/" class="buLink" target="_newwin">БУ</a>';
+    return b;
+}
+
+function constrEditSluBtn(ind){
+    var rec = elo.bsData[ind];
+    var b='<button onclick="showEditWindow(elo.bsData['+ind+'])" class="editSluBtn" title="Изменить">...</button>';
     return b;
 }
 
