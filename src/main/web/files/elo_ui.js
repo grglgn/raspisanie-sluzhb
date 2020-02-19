@@ -1,0 +1,3 @@
+if (!window.elo) elo = {};
+
+
