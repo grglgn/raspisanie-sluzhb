@@ -23,7 +23,7 @@ public class DayData {
         this.chteniya = chteniya;
     }
 
-    @Override
+    //@Override
     public String toString() {
         return "DayData{" +
                 "date=" + date +

@@ -97,6 +97,7 @@ function editWin_applyChanges(rec, forAll){
    //var chAr = rec.addedSlu;
    var divArr = $('#addedSluCnt div');
    rec.slu = [];
+   var recid = rec.recid;
    divArr.each(function(ind){
        //this.id
        var inputs = $(this).children('input');
@@ -104,21 +105,30 @@ function editWin_applyChanges(rec, forAll){
        var newName = inputs.eq(1).val();
        var isPra = rec.addedSlu[ind].isPrazdn;
        //var isPraz =  inputs.eq(3).prop('checked');
+
        rec.slu.push({time:newTime, title:newName, isPrazdn:isPra ? true:false});
    });
-   elo.bsData[rec.recid].slu = [].concat(rec.slu);
+   elo.bsData[recid].slu = [].concat(rec.slu);
    if (rec.prePrazdn != undefined){
       rec.prazdn = rec.prePrazdn;
-      elo.bsData[rec.recid].prazdn = rec.prePrazdn;
+      elo.bsData[recid].prazdn = rec.prePrazdn;
    }
 //   rec.dsc = $('#editWin_descrBox').html();
-   rec.dsc = $('#editWin_descrInput').val();
-   elo.bsData[rec.recid].dsc = rec.dsc;
 
-   g().refreshRow(rec.recid);
-   markRecPrazdn(rec);
+   var dsc = $('#editWin_descrInput').val();
+
+
+   elo.bsData[recid].dsc = dsc;
+   rec.dsc = dsc;
+   g().refreshRow(recid);
    w2popup.close();
+   markRecPrazdn(rec);
    if (forAll) _editWin_copySluChanges(rec);
+/*
+   setTimeout(function(){
+
+   },500);
+*/
 }
 
 function _editWin_copySluChanges(recOrigin){
@@ -126,11 +136,13 @@ function _editWin_copySluChanges(recOrigin){
    for (var i in elo.bsData){
        var dd = elo.bsData[i];
        if (dd.weekDay != recOrigin.weekDay) continue;
-       if (dd.slu && dd.slu.length) continue;
+       //if (dd.slu && dd.slu.length) continue;
+
        var rec = g().records[dd.recid];
        dd.slu = [].concat(recOrigin.slu);
        rec.slu = [].concat(recOrigin.slu);
        g().refreshRow(rec.recid);
+
    }
 }
 

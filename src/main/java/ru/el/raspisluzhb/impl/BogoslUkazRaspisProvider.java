@@ -44,13 +44,13 @@ public class BogoslUkazRaspisProvider implements RaspisProvider {
             if (pos > -1){
                 int dotInd = pageContent.indexOf('.', pos);
 
-                //получаем день недели - до первой точки
+                //РїРѕР»СѓС‡Р°РµРј РґРµРЅСЊ РЅРµРґРµР»Рё - РґРѕ РїРµСЂРІРѕР№ С‚РѕС‡РєРё
                 String wdayStr = pageContent.substring(pos, dotInd);
-                //обрезаем хвост спереди- теги
+                //РѕР±СЂРµР·Р°РµРј С…РІРѕСЃС‚ СЃРїРµСЂРµРґРё- С‚РµРіРё
                 wdayStr = wdayStr.substring(wdayStr.lastIndexOf('>')+1);
                 weekDay=wdayStr.trim();
 
-                //полчакм описание дня - до прямого слеша
+                //РїРѕР»С‡Р°РєРј РѕРїРёСЃР°РЅРёРµ РґРЅСЏ - РґРѕ РїСЂСЏРјРѕРіРѕ СЃР»РµС€Р°
                 descr = pageContent.substring(dotInd+1,
                         pageContent.indexOf('<',dotInd)).trim();
             }

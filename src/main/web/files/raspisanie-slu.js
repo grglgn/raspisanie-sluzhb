@@ -36,7 +36,7 @@ function drawGrid(useCached){
           name: 'raspGrid',
           records: elo.bsData,
           columns: [
-              { field: 'dsc', caption: '...', size: '40px',attr: "align=left",
+              { field: 'dateStr', caption: '...', size: '40px',attr: "align=left",
                 render: function (record, index, col_index) {
                             return constrBuBtn(index);
                         }},
