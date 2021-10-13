@@ -5,7 +5,7 @@ package ru.el.raspisluzhb;
  * Date: 03.04.19
  */
 public interface RaspisStore {
-    void begin();
+    void open();
     void storeDay(DayData dd);
-    void end();
+    void close();
 }

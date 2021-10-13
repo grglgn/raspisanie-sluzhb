@@ -1,0 +1,170 @@
+#shed_table, #shed_table td{
+ border:solid black 1px;
+ border-collapse: collapse;
+ }
+
+
+ .prazdn, .prazdn input, .prazdn td{
+    color:red !important;
+ }
+ .notprazdn, .notprazdn input{
+    color:black !important;
+ }
+ #htmlTA, #txtTA, #originTA{width:900px; height:300px;}
+ #txtTA{margin-left:100px;}
+ #descrTA{width:900px; height:300px;}
+ body {
+     text-align:center !important;
+     background-color:rgb(173, 218, 240);
+ }
+.bodyCnt{
+  background-color:rgb(67, 120, 176);
+  margin:10px; padding:15px;
+  border:1px dashed white;
+}
+
+h2.rasp-header{color:#fafafa; font-size:20px; margin-top:0px;}
+#startDtInp, #endDtInp {font-size:18px; }
+
+.slu-cnt {margin:3px; text-align:left; vertical-align:middle; font-size:13px;}
+.slu-all-cnt{padding: 4px; margin:0px;}
+.bordered{border: 1px dashed rgb(67, 120, 176);}
+.w2ui-field label {color:#fafafa; font-size:18px;}
+
+#sluTime{width:10%;}
+#sluName{width:65%;}
+
+#addedSluCnt {margin-top:3px 3px 3px 0px;
+              background-color: inherit; padding:5px;
+              border:1px solid #cccccc; min-height:40px; margin-top:10px;}
+
+#addedSluCnt div {margin:5px 5px 5px 0px; width:100%}
+#addedSluCnt div input{border:1px solid #cccccc;
+                       padding-left:2px;
+                       height:23px;
+                       font-size:14px;}
+#addedSluCnt div input.sluTime{width:10%; }
+#addedSluCnt div input.sluName{width:65%;  margin-left:2px;}
+/*
+#editWin_msgBox {margin-top:5px;margin-bottom:5px; padding:3px; height:25px;
+                 border: 1px solid lightgrey; color: brown;}
+*/
+/*
+#editWin_descrBox {margin-bottom:5px;
+                   padding:3px;
+                   background-color: #dddddd;
+                   border: 1px solid lightgrey;
+                   width:100%;
+                   height: 20px;
+                   white-space: normal;
+                   font-size:14px;
+                   cursor:pointer;
+                   vertical-align:middle;}
+*/
+
+#editWin_descrBox span {
+   color: #999999;
+   vertical-align:middle;
+}
+#editWin_descrInput {width:100%; height:40%; margin-bottom:5px;border: 1px solid lightgrey}
+
+#sluAddBtn {margin-left:10px}
+#raspGrid{width:90%; height: 350px; margin: 0 auto; margin-bottom:20px;
+          background-color:white;}
+#raspGrid td.w2ui-grid-data {font-size:14px !important; padding:5px 3px !important;}
+#raspGrid textarea {width:100%; height:100%;  border: 1px solid brown;}
+
+
+#markPrazdnBox{margin-bottom:10px;}
+#markPrazdnBox .w2ui-btn{
+    margin-left:0px !important;
+    width:180px;
+}
+#loadBtn{height:40px; margin-top:5px;  margin-bottom:15px; font-size:14px;}
+#loadJsonBtn{height:40px; margin-top:0px;  margin-bottom:15px; font-size:14px;
+             width:100px;}
+#processBtn{height:40px; margin-top:0px;  margin-bottom:30px; font-size:14px;}
+.elomsg{font-size:18px; width:100%; line-height:150%}
+
+#popup1 {display: none; width: 90%; height: 400px; overflow: hidden;
+         text-align:left !important;}
+#w2ui-popup{
+ text-align:left;
+}
+
+#console {margin: 0 auto; width: 90%; height: 40px; overflow: auto; background-color: #dddddd;
+vertical-align:middle; }
+
+#genPopup {display: none; width: 90%; height: 400px; overflow: hidden;}
+#genWin_tabs{width: 100%; height: 29px;}
+#genTabs{width: 100%;
+             height: 400px;
+             border: 1px solid silver;
+             border-top: 0px;
+             display: none;
+             padding: 10px;
+             overflow: auto;}
+#genWin_content{
+  //border: 1px solid silver;
+  //background-color: #dddddd;
+  padding:5px;
+  margin:2px;
+  text-align:left;
+}
+#genWin_content table, #genWin_content table td{
+ border:solid black 1px;
+ border-collapse: collapse;
+ padding:3px;
+ }
+ #genWin_content table td:nth-child(1),
+ #genWin_content table td:nth-child(2),
+ #genWin_content table td:nth-child(3){
+     text-align:center;
+ }
+  #genWin_content table td:nth-child(4){
+      padding-left:6px;
+  }
+  .buLink, .buLink:hover,.buLink:visited{
+     text-decoration:none;
+     color:white;
+     font-family:Verdana;
+     padding:3px;
+     background-color:rgb(67, 120, 176);
+  }
+
+  .editSluBtn{
+       padding:3px;
+       cursor:pointer;
+       height:20px;
+  }
+
+  .w2ui-grid .w2ui-grid-body table .w2ui-head,
+  .w2ui-popup .w2ui-popup-title,
+  .w2ui-popup .w2ui-popup-buttons {
+   background-image:none;
+   background: #456a97;
+   color:white;
+  }
+  .w2ui-popup{
+     border:1px solid #456a97;
+     background:transparent;
+  }
+  .w2ui-popup .w2ui-popup-no-title  {border-top-left-radius:0px;border-top-right-radius:0px;}
+
+
+  .uiFuncBtn{
+     background: #456a97;
+     color:white;
+     padding:3px 8px;
+     border:1px solid white;
+     font-family:Verdana;
+  }
+  :focus::-webkit-input-placeholder {color: transparent}
+  :focus::-moz-placeholder          {color: transparent}
+  :focus:-moz-placeholder           {color: transparent}
+  :focus:-ms-input-placeholder      {color: transparent}
+  textarea{font-style:normal;}
+  //textarea[placeholder]          {color:#aaaaaa; font-style:italic;}
+  textarea::-moz-placeholder     {color:#aaaaaa; font-style:italic;}
+  textarea:-moz-placeholder      {color:#aaaaaa; font-style:italic;}
+  textarea:-ms-input-placeholder {color:#aaaaaa; font-style:italic;}

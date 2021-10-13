@@ -11,4 +11,8 @@ public class RaspisLoaderException extends RuntimeException {
     public RaspisLoaderException(String msg, Throwable t){
         super(msg,t);
     }
+
+    public RaspisLoaderException(String msg) {
+        super(msg);
+    }
 }

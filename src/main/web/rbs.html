@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Составление расписания богослужений</title>
+    <script src="files/jquery-2.1.1.js"></script>
+    <script src="files/w2ui.js"></script>
+    <script src="files/bu-data.js"></script>
+    <script src="files/el_api.js"></script>
+    <script src="files/raspisanie-strings.js"></script>
+    <script src="files/raspisanie-slu.js"></script>
+    <script src="files/edtSluDialog.js"></script>
+    <link rel="stylesheet" href="files/w2ui.css">
+    <link rel="stylesheet" href="files/raspisanie.css">
+
+</head>
+<body>
+<div  class="bodyCnt">
+
+<h2 class="rasp-header">Составить расписание богослужений</h2>
+
+    <div id="form" style="width: 400px;  margin: 0 auto;">
+    <div class="w2ui-page page-0">
+        <div class="w2ui-field">
+            <label>C:</label>
+            <div>
+                <input id="startDtInp" name="startDt"/>
+            </div>
+            <label>По:</label>
+            <div>
+                <input id="endDtInp" name="endDt"/>
+            </div>
+        </div>
+    </div>
+    <div class="w2ui-buttons">
+        <button class="w2ui-btn"
+                id="loadBtn"
+                name="load">Загрузить календарь</button>
+    </div>
+</div>
+
+    <div id="raspGrid"></div>
+
+    <button class="w2ui-btn" id="processBtn">Сформировать расписание</button>
+    <button class="w2ui-btn" id="loadJsonBtn">Модель</button>
+
+<!--popup-->
+<div id="popup1" >
+    <div rel="title" id="sluWinTitle"></div>
+    <div rel="body" style="padding: 10px; line-height: 150%">
+<!--        <div id="editWin_descrBox"></div>-->
+        <div id="markPrazdnBox">
+            <!--            <button class="uiFuncBtn"></button>-->
+            <button class="w2ui-btn"></button>
+        </div>
+
+
+        <textarea id="editWin_descrInput" placeholder="Описание дня"></textarea>
+        <br/>
+        <input id="sluTime"  type="list"/>
+        <input id="sluName"  type="list"/>
+        <input type="checkbox" id="sluPrazdnChk" title="Праздничная служба"/>
+        <button id="sluAddBtn"  class="w2ui-btn">Добавить</button>
+
+<!--
+        <div id="editWin_msgBox">
+
+        </div>
+-->
+        <div id="addedSluCnt">
+
+        </div>
+    </div>
+    <div rel="buttons">
+        <button class="w2ui-btn" id="editWin_applyBtn" >Сохранить</button>
+        <button class="w2ui-btn" id="editWin_applyForAllBtn" title="Сохранить для всех одноименных дней недели">Сохранить для всех дней</button>
+    </div>
+</div>
+
+<div id="genPopup">
+    <div rel="title" id="genWinTitle"></div>
+    <div rel="body" style="padding: 0px ; line-height: 150%">
+        <div id="genWin_content"></div>
+    </div>
+   <div rel="buttons">
+       <div id="toolbar" style="padding: 4px; border: 1px solid #dfdfdf; border-radius: 3px">
+       </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+</html>

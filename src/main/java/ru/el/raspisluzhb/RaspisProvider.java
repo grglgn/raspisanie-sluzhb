@@ -8,5 +8,5 @@ import java.util.Date;
  */
 public interface RaspisProvider {
     String getUrl(Date dt);
-    DayData parse (String pageContent);
+    DayData parse(Date dt, String pageContent);
 }

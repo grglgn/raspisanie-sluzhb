@@ -1,12 +1,36 @@
 package ru.el.raspisluzhb;
 
+import java.util.Date;
+
 /**
  * User: eloginov
  * Date: 18.03.19
  */
 public class DayData {
-    public byte weekDay;
-    public byte date;
-    public String description;
-    public String chteniya;
+    public final Date date;
+    public final  byte weekDay;
+    public final int day;
+    public final String description;
+    public final String chteniya;
+    public final String weekDayStr;
+
+    public DayData(Date date, String wDayStr, int day, String description, String chteniya) {
+        this.date = date;
+        this.weekDayStr = wDayStr;
+        this.weekDay = -1;
+        this.day = day;
+        this.description = description;
+        this.chteniya = chteniya;
+    }
+
+    //@Override
+    public String toString() {
+        return "DayData{" +
+                "date=" + date +
+                ", weekDayStr=" + weekDayStr +
+                ", day=" + day +
+                ", description='" + description + '\'' +
+                ", chteniya='" + chteniya + '\'' +
+                '}';
+    }
 }

@@ -1,13 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f244987-2aab-4544-aeaf-63697d448e77" name="Default" comment="коммит 1">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.ipr" afterDir="false" />
+    <list default="true" id="8f244987-2aab-4544-aeaf-63697d448e77" name="Default" comment="коммит 3">
+      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-01" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-01.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-02" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-02.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-03" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-03.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-04" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-04.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-05" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-05.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/web/raspisanie-sluzhb.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/raspis-loader-config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/DayData.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/Logger.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/MosPatRaspisProvider.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/RaspisDataLoader.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/RaspisLoaderException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/RaspisManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/RaspisProvider.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/RaspisStore.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/Settings.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/UrlLoader.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/impl/BogoslUkazRaspisProvider.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/impl/FileRaspisStore.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/impl/JsonStore.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.iws" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/raspis-loader-config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/raspis-loader-config.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +82,14 @@
   <component name="FavoritesManager">
     <favorites_list name="raspisanie-sluzhb" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
@@ -78,33 +108,35 @@
   <component name="PerforceDirect.Settings">
     <option name="USE_LOGIN" value="false" />
   </component>
-  <component name="ProjectId" id="1qP4bwJ76XqXLWH8lRTPQLArhK8" />
+  <component name="ProjectId" id="1P1bsGILyMPCl6mLOeJxzXd2Rp5" />
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="OverrideImplement.combined" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
     <property name="options.lastSelected" value="reference.settings.project.maven.runner" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="ru.el.raspisluzhb.Settings" />
       <recent name="ru.el.raspisluzhb.Logger" />
     </key>
   </component>
@@ -134,7 +166,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.RaspisManager">
+  <component name="RunManager" selected="Maven.raspisanie-sluzhb single">
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -148,11 +180,28 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration name="BogoslUkazRaspisProvider" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.el.raspisluzhb.impl.BogoslUkazRaspisProvider" />
+      <module name="raspisanie-sluzhb" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.el.raspisluzhb.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
     <configuration name="RaspisManager" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="ru.el.raspisluzhb.RaspisManager" />
       <module name="raspisanie-sluzhb" />
+      <option name="PROGRAM_PARAMETERS" value="01-10-2019 31-10-2019" />
       <option name="VM_PARAMETERS" value="-ea" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
         <option name="TRANSPORT" value="0" />
@@ -216,25 +265,10 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration name="raspisanie-sluzhb [clean,validate...]" type="MavenRunConfiguration" factoryName="Maven">
+    <configuration name="raspisanie-sluzhb single" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
-        <option name="myRunnerSettings">
-          <MavenRunnerSettings>
-            <option name="delegateBuildToMaven" value="false" />
-            <option name="environmentProperties">
-              <map />
-            </option>
-            <option name="jreName" value="11" />
-            <option name="mavenProperties">
-              <map />
-            </option>
-            <option name="passParentEnv" value="true" />
-            <option name="runMavenInBackground" value="true" />
-            <option name="skipTests" value="false" />
-            <option name="vmOptions" value="" />
-          </MavenRunnerSettings>
-        </option>
+        <option name="myRunnerSettings" />
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
             <option name="profiles">
@@ -243,7 +277,6 @@
             <option name="goals">
               <list>
                 <option value="clean" />
-                <option value="validate" />
                 <option value="compile" />
                 <option value="assembly:single" />
               </list>
@@ -276,8 +309,14 @@
     </configuration>
     <list>
       <item itemvalue="Application.RaspisManager" />
-      <item itemvalue="Maven.raspisanie-sluzhb [clean,validate...]" />
+      <item itemvalue="Application.BogoslUkazRaspisProvider" />
+      <item itemvalue="Maven.raspisanie-sluzhb single" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BogoslUkazRaspisProvider" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SliceManager">
     <option name="analysisUIOptions">
@@ -295,6 +334,42 @@
       <option name="presentableId" value="Default" />
       <updated>1552568897396</updated>
     </task>
+    <task id="LOCAL-00001" summary="коммит 2">
+      <created>1565814852170</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1565814852170</updated>
+    </task>
+    <task id="LOCAL-00002" summary="коммит 3">
+      <created>1568649091469</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1568649091469</updated>
+    </task>
+    <task id="LOCAL-00003" summary="коммит 3">
+      <created>1568650871510</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1568650871510</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Рабочий jar">
+      <created>1568839435307</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1568839435307</updated>
+    </task>
+    <task id="LOCAL-00005" summary="сборка">
+      <created>1568839503505</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1568839503505</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -311,12 +386,15 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="PERFORM_UPDATE_IN_BACKGROUND" value="false" />
     <option name="PERFORM_COMMIT_IN_BACKGROUND" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="коммит 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="коммит 1" />
+    <MESSAGE value="коммит 2" />
+    <MESSAGE value="коммит 3" />
+    <MESSAGE value="Рабочий jar" />
+    <MESSAGE value="сборка" />
+    <option name="LAST_COMMIT_MESSAGE" value="сборка" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -356,103 +434,16 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisManager.java</url>
-          <line>31</line>
+          <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/FileRaspisStore.java</url>
+          <line>30</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Settings.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="2" />
+          <line>31</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>for3t</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>raspisanie-sluzhb</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.4</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.20000002" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

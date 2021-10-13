@@ -14,8 +14,14 @@ public class UrlLoader {
     public String loadUrl(String url){
             try {
                 URL urlObj = new URL(url);
-                Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("10.1.200.100", 8080));
-                HttpURLConnection conn = (HttpURLConnection )urlObj.openConnection(proxy);
+                String proxyAddr = Settings.getInstance().getProxyAdress();
+                HttpURLConnection conn;
+                if (proxyAddr != null){
+                    Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyAddr, 8080));
+                    conn = (HttpURLConnection)urlObj.openConnection(proxy);
+                } else {
+                    conn = (HttpURLConnection)urlObj.openConnection();
+                }
                 StringWriter sw = new StringWriter();
                 try (BufferedReader br = new BufferedReader(
                         new InputStreamReader(conn.getInputStream(),"utf-8"))){
