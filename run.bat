@@ -1,1 +1,1 @@
-c:\java8_64\bin\java.exe -jar target\raspisanie-sluzhb-1.0.jar
+c:\java8\bin\java.exe -jar target\raspisanie-sluzhb-1.0-jar-with-dependencies.jar
