@@ -2,34 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f244987-2aab-4544-aeaf-63697d448e77" name="Default" comment="коммит 3">
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-01" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-01.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-02" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-02.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-03" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-03.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-04" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-04.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-05" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RASPIS_STORE/bu-2019-09-05.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/web/raspisanie-sluzhb.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/raspis-loader-config.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/DayData.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/Logger.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/MosPatRaspisProvider.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/RaspisDataLoader.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/RaspisLoaderException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/RaspisManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/RaspisProvider.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/RaspisStore.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/Settings.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/UrlLoader.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/impl/BogoslUkazRaspisProvider.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/impl/FileRaspisStore.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/el/raspisluzhb/impl/JsonStore.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspisanie-sluzhb.iws" beforeDir="false" afterPath="$PROJECT_DIR$/raspisanie-sluzhb.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/DayData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/DayData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/BogoslUkazRaspisProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/BogoslUkazRaspisProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/JsonStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/JsonStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/raspis-loader-config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/raspis-loader-config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/raspisanie-sluzhb-1.0-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/raspisanie-sluzhb-1.0-jar-with-dependencies.jar" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -128,8 +113,8 @@
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.19375" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -166,7 +151,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.raspisanie-sluzhb single">
+  <component name="RunManager" selected="Application.RaspisManager">
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -200,7 +185,7 @@
     <configuration name="RaspisManager" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="ru.el.raspisluzhb.RaspisManager" />
       <module name="raspisanie-sluzhb" />
-      <option name="PROGRAM_PARAMETERS" value="01-10-2019 31-10-2019" />
+      <option name="PROGRAM_PARAMETERS" value="03-12-2021 27-12-2021" />
       <option name="VM_PARAMETERS" value="-ea" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
@@ -434,14 +419,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/impl/FileRaspisStore.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/Settings.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/main/java/ru/el/raspisluzhb/RaspisDataLoader.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

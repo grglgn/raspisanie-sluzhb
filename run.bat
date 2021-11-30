@@ -1,1 +1,1 @@
-c:\java8\bin\java.exe -jar target\raspisanie-sluzhb-1.0-jar-with-dependencies.jar
+c:\java8\bin\java.exe -jar target\raspisanie-sluzhb-1.0-jar-with-dependencies.jar 01-12-2021 15-12-2021

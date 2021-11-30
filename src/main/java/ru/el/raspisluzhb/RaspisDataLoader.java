@@ -28,9 +28,9 @@ public class RaspisDataLoader {
         while (dt.compareTo(this.endDate) <= 0) {
             String url = provider.getUrl(dt);
             Logger.d(()->"Connecting to "+url);
-            String urlContent = urlLoader.loadUrl(url);
+            //String urlContent = urlLoader.loadUrl(url);
             Logger.d(()->"Parsing... ");
-            DayData dd = provider.parse(dt, urlContent);
+            DayData dd = provider.parse(dt, url);
             Logger.d(()->"Storing... ");
             store.storeDay(dd);
             Logger.d(()->"Done for "+Settings.getInstance().

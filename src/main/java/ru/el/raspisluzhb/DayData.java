@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class DayData {
     public final Date date;
-    public final  byte weekDay;
+    public final int weekDay;
     public final int day;
     public final String description;
     public final String chteniya;
@@ -22,6 +22,16 @@ public class DayData {
         this.description = description;
         this.chteniya = chteniya;
     }
+
+    public DayData(Date date, int wday, int day, String description, String chteniya) {
+        this.date = date;
+        this.weekDayStr = "";
+        this.weekDay = wday;
+        this.day = day;
+        this.description = description;
+        this.chteniya = chteniya;
+    }
+
 
     //@Override
     public String toString() {

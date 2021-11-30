@@ -125,7 +125,7 @@ public final class Settings {
 
     public synchronized static Settings getInstance() {
         if (instance == null) {
-            synchronized (monitor) {
+            synchronized (Settings.class) {
                 if (instance == null) instance = new Settings();//"double check"
             }
         }
